@@ -1,0 +1,752 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELVRT | Real Estate Neural Infrastructure</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <style>
+        /* ===== CSS VARIABLES ===== */
+        :root {
+            --color-bg: #000000;
+            --color-white: #ffffff;
+            --color-text-dim: #94A3B8;
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: white;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            width: 100%;
+            zoom: 0.85;
+        }
+
+        .font-display { font-family: var(--font-display); }
+        .text-text-dim { color: var(--color-text-dim); }
+        .text-dim { color: #94A3B8; }
+
+        /* ===== HERO BACKGROUND ===== */
+        .hero-background {
+            position: absolute; inset: 0;
+            background-image: url('https://i.ibb.co/kFw85Wy/black-texture-background.jpg');
+            background-size: cover; background-position: center; background-repeat: no-repeat;
+            filter: contrast(1.1) brightness(1.05) saturate(0.55) sepia(4%);
+            animation: bgPulse 20s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse {
+            0% { transform: scale(1) translate(0, 0); filter: contrast(1.1) brightness(1.05) saturate(0.55) sepia(4%); }
+            100% { transform: scale(1.03) translate(-10px, -5px); filter: contrast(1.15) brightness(1.08) saturate(0.6) sepia(5%); }
+        }
+        .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0.25), rgba(0,0,0,0.15), rgba(0,0,0,0.30)); pointer-events: none; }
+        .hero-cyan-tint { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 40%, rgba(34,211,238,0.025), transparent 60%); mix-blend-mode: screen; pointer-events: none; animation: tintPulse 12s ease-in-out infinite alternate; }
+        @keyframes tintPulse { 0% { opacity: 0.5; } 100% { opacity: 0.9; } }
+
+        /* ===== NAVBAR ===== */
+        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; padding: 0.75rem 2rem; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); background: transparent !important; backdrop-filter: none !important; border-bottom: none !important; }
+        .navbar.scrolled { padding: 0.5rem 2rem; background: rgba(0,0,0,0.88) !important; backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .logo-container { width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); transition: all 0.4s ease; }
+        .logo-container:hover { transform: scale(1.08); }
+        .logo-container img { width: 60px; height: 60px; object-fit: contain; filter: brightness(1.4) contrast(1.3); }
+        .social-icon { width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: white; cursor: pointer; transition: all 0.3s ease; background: transparent; border: none; }
+        .social-icon svg { width: 26px; height: 26px; stroke-width: 2.5; stroke: white; fill: none; }
+        .social-icon:hover { transform: scale(1.15); opacity: 0.8; }
+
+        /* Global Primary Button */
+        .btn-primary { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.1rem 2.2rem; background: white; color: black; font-family: var(--font-sans); font-weight: 800; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; border: none; border-radius: 14px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 8px 32px rgba(255,255,255,0.25); text-decoration: none; line-height: 1; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(255,255,255,0.35); color: black; }
+        .btn-primary:active { transform: translateY(1px); }
+        .btn-primary svg { flex-shrink: 0; }
+
+        .btn-secondary { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.1rem 2.2rem; background: transparent; color: white; font-family: var(--font-sans); font-weight: 700; font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.35); border-radius: 14px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); text-decoration: none; }
+        .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.55); transform: translateY(-3px); color: white; }
+
+        .hero-title { font-family: var(--font-display); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
+        .hero-title-main { font-size: clamp(3rem, 6vw, 5.5rem); font-weight: 600; color: white; display: block; margin-bottom: 1rem; text-shadow: 0 2px 30px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.4); }
+        .hero-title-sub { font-size: clamp(2.5rem, 5vw, 4.5rem); font-weight: 600; color: white; display: block; line-height: 1.1; padding-bottom: 0.5rem; text-shadow: 0 2px 30px rgba(0,0,0,0.7), 0 0 60px rgba(0,0,0,0.4); }
+        .hero-description { font-size: 1.25rem; line-height: 1.7; margin-bottom: 3rem; color: rgba(255,255,255,0.92); text-shadow: 0 1px 20px rgba(0,0,0,0.6); }
+
+        /* ===== FLOATING CHAT BUBBLES ===== */
+        .floating-chat-area { display: flex; flex-direction: column; gap: 1rem; width: 100%; max-width: 550px; justify-content: flex-start; max-height: 520px; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; -ms-overflow-style: none; padding-right: 4px; }
+        .floating-chat-area::-webkit-scrollbar { display: none; }
+        .msg-bubble { max-width: 80%; padding: 1rem 1.5rem; border-radius: 14px; font-size: 1rem; line-height: 1.55; font-family: var(--font-sans); font-weight: 400; backdrop-filter: blur(10px); will-change: transform, opacity; transform: translateZ(0); backface-visibility: hidden; animation: ultraSmoothAppear 0.8s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; transform: translateY(24px); flex-shrink: 0; }
+        @keyframes ultraSmoothAppear { 0% { opacity: 0; transform: translateY(24px) scale(0.96); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        .msg-received { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.95); align-self: flex-start; border-radius: 14px 14px 14px 4px; border: 1px solid rgba(255,255,255,0.08); transform-origin: bottom left; }
+        .msg-sent { background: #ffffff; color: #000000; align-self: flex-end; font-weight: 500; border-radius: 14px 14px 4px 14px; transform-origin: bottom right; }
+        .msg-timestamp { font-size: 0.65rem; margin-top: 0.4rem; opacity: 0; text-align: right; font-weight: 400; animation: fadeInTimestamp 0.5s 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @keyframes fadeInTimestamp { to { opacity: 0.3; } }
+        .msg-sent .msg-timestamp { animation: fadeInTimestampSent 0.5s 0.3s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @keyframes fadeInTimestampSent { to { opacity: 0.4; } }
+        .typing-indicator { display: flex; gap: 0.35rem; padding: 1rem 1.5rem; background: rgba(255,255,255,0.06); border-radius: 14px 14px 14px 4px; align-self: flex-start; width: fit-content; border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); will-change: transform, opacity; transform: translateZ(0); backface-visibility: hidden; animation: ultraSmoothAppear 0.5s cubic-bezier(0.16,1,0.3,1) forwards; opacity: 0; transform: translateY(24px); transform-origin: bottom left; transition: opacity 0.3s cubic-bezier(0.16,1,0.3,1); flex-shrink: 0; }
+        .typing-dot { width: 7px; height: 7px; background: rgba(255,255,255,0.5); border-radius: 50%; will-change: opacity; animation: gentlePulse 1.8s ease-in-out infinite; }
+        .typing-dot:nth-child(2) { animation-delay: 0.25s; } .typing-dot:nth-child(3) { animation-delay: 0.5s; }
+        @keyframes gentlePulse { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.65; } }
+
+        /* Nav Links */
+        .nav-link { color: rgba(255,255,255,0.7); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; transition: all 0.3s ease; text-decoration: none; position: relative; }
+        .nav-link:hover { color: white; }
+        .nav-link::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: white; transition: width 0.3s ease; }
+        .nav-link:hover::after { width: 100%; }
+
+        /* ===== FEATURES SECTION ===== */
+        .features-section { position: relative; background-image: url('https://i.ibb.co.com/RTvB6jmv/black-texture-background-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+        .features-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); z-index: 1; pointer-events: none; }
+        .features-content { position: relative; z-index: 10; }
+        .feature-card { position: relative; background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #080808 100%); border-radius: 2.5rem; padding: 3rem 2.5rem; cursor: pointer; overflow: hidden; transition: all 0.5s cubic-bezier(0.16,1,0.3,1); border: 1px solid rgba(255,255,255,0.08); min-height: 380px; display: flex; flex-direction: column; }
+        .feature-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(to top, rgba(251,146,60,0.25) 0%, rgba(249,115,22,0.15) 30%, rgba(234,88,12,0.08) 60%, transparent 100%); pointer-events: none; transition: all 0.5s cubic-bezier(0.16,1,0.3,1); opacity: 0.7; }
+        .feature-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 70%); pointer-events: none; transition: opacity 0.5s ease; }
+        .feature-card:hover { transform: translateY(-8px) scale(1.02); border-color: rgba(251,146,60,0.3); box-shadow: 0 25px 60px rgba(0,0,0,0.6), 0 0 80px rgba(249,115,22,0.15), 0 0 0 1px rgba(255,255,255,0.08) inset; }
+        .feature-card:hover::before { opacity: 1; height: 65%; background: linear-gradient(to top, rgba(251,146,60,0.35) 0%, rgba(249,115,22,0.22) 35%, rgba(234,88,12,0.12) 65%, transparent 100%); }
+        .feature-card:hover::after { opacity: 1; }
+        .card-content { position: relative; z-index: 10; display: flex; flex-direction: column; height: 100%; flex: 1; }
+        .card-icon-box { width: 72px; height: 72px; border-radius: 20px; background: linear-gradient(145deg, #1e1e1e, #141414); border: 1px solid rgba(255,255,255,0.10); display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; transition: all 0.5s cubic-bezier(0.16,1,0.3,1); position: relative; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 24px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,0,0,0.3); transform: perspective(600px) rotateX(2deg) rotateY(-2deg); }
+        .card-icon-box::before { content: ''; position: absolute; top: 6px; left: 8px; right: 8px; height: 30%; border-radius: 12px; background: linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 70%, transparent 100%); pointer-events: none; transition: all 0.5s ease; }
+        .card-icon-box::after { content: ''; position: absolute; bottom: 4px; left: 10px; right: 10px; height: 20%; border-radius: 0 0 10px 10px; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%); pointer-events: none; }
+        .card-icon-box svg { position: relative; z-index: 2; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5)); transition: all 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .feature-card:hover .card-icon-box { transform: perspective(600px) rotateX(0deg) rotateY(0deg) translateY(-2px); background: linear-gradient(145deg, #242424, #181818); border-color: rgba(251,146,60,0.35); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 14px 36px rgba(0,0,0,0.6), 0 4px 8px rgba(0,0,0,0.5), 0 0 0 1px rgba(0,0,0,0.3), 0 0 30px rgba(249,115,22,0.2); }
+        .feature-card:hover .card-icon-box::before { background: linear-gradient(to bottom, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 70%, transparent 100%); }
+        .feature-card:hover .card-icon-box svg { filter: drop-shadow(0 3px 5px rgba(0,0,0,0.6)); transform: scale(1.08); }
+        .card-title { font-size: 2.25rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; color: #ffffff; margin-bottom: 1rem; font-family: var(--font-display); }
+        .card-description { font-size: 1rem; line-height: 1.7; color: rgba(148,163,184,0.85); font-weight: 300; flex: 1; margin-bottom: 1.5rem; transition: color 0.4s ease; }
+        .feature-card:hover .card-description { color: rgba(203,213,225,0.95); }
+        .learn-more { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.95rem; font-weight: 500; color: rgba(255,255,255,0.7); transition: all 0.4s cubic-bezier(0.16,1,0.3,1); margin-top: auto; padding-top: 1rem; }
+        .learn-more:hover { color: #fb923c; gap: 0.75rem; }
+        .learn-more svg { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .feature-card:hover .learn-more svg { transform: translateX(4px); }
+
+        /* ===== MODAL ===== */
+        .modal-backdrop { background: rgba(0,0,0,0.92); backdrop-filter: blur(12px); }
+        .modal-card { position: relative; background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #080808 100%); border: 1px solid rgba(255,255,255,0.12); border-radius: 3rem; overflow: hidden; box-shadow: 0 40px 120px rgba(0,0,0,0.95), 0 0 100px rgba(249,115,22,0.1); }
+        .modal-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 45%; background: linear-gradient(to top, rgba(251,146,60,0.18) 0%, rgba(249,115,22,0.10) 40%, transparent 100%); pointer-events: none; z-index: 1; }
+        .modal-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 30% 20%, rgba(255,255,255,0.03) 0%, transparent 60%); pointer-events: none; z-index: 1; }
+        .modal-icon-box { width: 72px; height: 72px; border-radius: 20px; background: linear-gradient(145deg, #1e1e1e, #141414); border: 1px solid rgba(255,255,255,0.10); display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset, 0 8px 24px rgba(0,0,0,0.5), 0 2px 4px rgba(0,0,0,0.4), 0 0 0 1px rgba(0,0,0,0.3); transform: perspective(600px) rotateX(2deg) rotateY(-2deg); }
+        .modal-icon-box::before { content: ''; position: absolute; top: 6px; left: 8px; right: 8px; height: 30%; border-radius: 12px; background: linear-gradient(to bottom, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 70%, transparent 100%); pointer-events: none; }
+        .modal-icon-box::after { content: ''; position: absolute; bottom: 4px; left: 10px; right: 10px; height: 20%; border-radius: 0 0 10px 10px; background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 100%); pointer-events: none; }
+        .modal-icon-box svg { position: relative; z-index: 2; filter: drop-shadow(0 2px 3px rgba(0,0,0,0.5)); }
+        .modal-enter { opacity: 0; transform: scale(0.95) translateY(20px); transition: all 0.4s cubic-bezier(0.16,1,0.3,1); }
+        .modal-enter-active { opacity: 1; transform: scale(1) translateY(0); }
+        .modal-content { position: relative; z-index: 10; }
+        .modal-close-btn { position: absolute; top: 1.5rem; right: 1.5rem; width: 44px; height: 44px; border-radius: 50%; background: rgba(26,26,26,0.95); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s ease; z-index: 20; }
+        .modal-close-btn:hover { background: #ffffff; color: #000000; transform: rotate(90deg); }
+        .spec-row { border-bottom: 1px solid rgba(255,255,255,0.06); transition: all 0.3s ease; }
+        .spec-row:hover { background: rgba(255,255,255,0.02); border-bottom-color: rgba(251,146,60,0.2); }
+        .modal-cta-btn { display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; border-radius: 1.25rem; background: linear-gradient(135deg, #fb923c 0%, #f97316 100%); color: #000000; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; border: none; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); box-shadow: 0 8px 24px rgba(249,115,22,0.3); }
+        .modal-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(249,115,22,0.45); }
+        .modal-cta-btn svg { transition: transform 0.3s ease; }
+        .modal-cta-btn:hover svg { transform: translateX(4px); }
+
+        /* ===== CAROUSEL SECTION ===== */
+        .why-section { position: relative; background-image: url('https://i.ibb.co.com/RTvB6jmv/black-texture-background-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
+        .why-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.55); z-index: 1; pointer-events: none; }
+        .why-content { position: relative; z-index: 10; }
+        .carousel-wrapper { display: flex; flex-direction: column; align-items: center; max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
+        .carousel-container { display: flex; align-items: center; justify-content: center; position: relative; width: 100%; min-height: 560px; }
+        .card-stage { position: relative; flex: 1; display: flex; align-items: center; justify-content: center; min-height: 520px; perspective: 1200px; max-width: 560px; }
+        .timeline-card { position: absolute; width: 100%; max-width: 540px; padding: 3.2rem 3rem; background: linear-gradient(145deg, #121212 0%, #0a0a0a 60%, #050505 100%); border: 1.5px solid rgba(255,255,255,0.08); border-radius: 2.5rem; transition: transform 0.58s cubic-bezier(0.22,0.92,0.36,1), opacity 0.5s cubic-bezier(0.22,0.92,0.36,1), filter 0.45s ease-out; will-change: transform, opacity; transform-style: preserve-3d; min-height: 420px; display: flex; flex-direction: column; justify-content: center; backdrop-filter: blur(2px); box-shadow: 0 20px 45px rgba(0,0,0,0.6); backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(0); }
+        .timeline-card.active { transform: translateX(0) scale(1) rotateY(0deg); opacity: 1; filter: brightness(1) blur(0px); z-index: 15; border-color: rgba(251,146,60,0.5); box-shadow: 0 32px 70px rgba(0,0,0,0.7), 0 0 0 1px rgba(251,146,60,0.2) inset, 0 0 32px rgba(249,115,22,0.2); }
+        .timeline-card.prev { transform: translateX(-58%) scale(0.86) rotateY(5deg); opacity: 0.2; filter: brightness(0.4) blur(6px); z-index: 8; pointer-events: none; }
+        .timeline-card.next { transform: translateX(58%) scale(0.86) rotateY(-5deg); opacity: 0.2; filter: brightness(0.4) blur(6px); z-index: 8; pointer-events: none; }
+        .timeline-card.far-prev { transform: translateX(-95%) scale(0.72) rotateY(12deg); opacity: 0; filter: brightness(0.2) blur(12px); z-index: 3; pointer-events: none; }
+        .timeline-card.far-next { transform: translateX(95%) scale(0.72) rotateY(-12deg); opacity: 0; filter: brightness(0.2) blur(12px); z-index: 3; pointer-events: none; }
+        .timeline-card.exit-left { transform: translateX(-130%) scale(0.65) rotateY(18deg); opacity: 0; filter: brightness(0.08) blur(14px); transition: transform 0.6s cubic-bezier(0.2,0.95,0.3,1.05), opacity 0.5s ease, filter 0.45s ease; z-index: 2; pointer-events: none; }
+        .timeline-card.exit-right { transform: translateX(130%) scale(0.65) rotateY(-18deg); opacity: 0; filter: brightness(0.08) blur(14px); transition: transform 0.6s cubic-bezier(0.2,0.95,0.3,1.05), opacity 0.5s ease, filter 0.45s ease; z-index: 2; pointer-events: none; }
+        .card-content-inner { position: relative; z-index: 2; }
+        .timeline-number { font-family: var(--font-display); font-size: 5.8rem; font-weight: 800; line-height: 0.9; background: linear-gradient(135deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0.03) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.75rem; user-select: none; letter-spacing: -0.02em; }
+        .timeline-title { font-family: var(--font-display); font-size: 1.85rem; font-weight: 600; line-height: 1.2; letter-spacing: -0.02em; color: #ffffff; margin-bottom: 1rem; }
+        .timeline-desc { font-size: 1rem; line-height: 1.7; color: rgba(203,213,225,0.85); font-weight: 300; max-width: 96%; }
+        .pagination-dots { display: flex; align-items: center; justify-content: center; gap: 12px; margin-top: 2.5rem; position: relative; z-index: 20; }
+        .pagination-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); border: none; cursor: pointer; transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1.1); padding: 0; outline: none; }
+        .pagination-dot:hover { background: rgba(255,255,255,0.45); transform: scale(1.2); }
+        .pagination-dot.active { width: 28px; border-radius: 100px; background: #fb923c; box-shadow: 0 0 16px rgba(251,146,60,0.6); }
+        .side-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 68px; height: 68px; border-radius: 50%; background: rgba(15,15,15,0.75); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.12); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.2,0.9,0.4,1); color: rgba(255,255,255,0.65); z-index: 25; opacity: 0; pointer-events: none; }
+        .side-arrow.visible { opacity: 1; pointer-events: auto; }
+        .side-arrow:hover { background: #1f1f1f; border-color: rgba(251,146,60,0.6); color: #fb923c; transform: translateY(-50%) scale(1.06); box-shadow: 0 14px 28px rgba(0,0,0,0.5); }
+        .side-arrow:active { transform: translateY(-50%) scale(0.96); }
+        .side-arrow svg { width: 28px; height: 28px; stroke-width: 2.4; }
+        .arrow-left { left: -10px; } .arrow-right { right: -10px; }
+        @media (max-width: 768px) { .carousel-container { min-height: 480px; } .card-stage { min-height: 460px; max-width: 100%; } .timeline-card { padding: 2.5rem 1.75rem; border-radius: 2rem; max-width: 100%; min-height: 380px; } .timeline-number { font-size: 4.2rem; } .timeline-title { font-size: 1.45rem; } .timeline-desc { font-size: 0.92rem; } .side-arrow { width: 52px; height: 52px; } .side-arrow svg { width: 22px; height: 22px; } .arrow-left { left: 0px; } .arrow-right { right: 0px; } .pagination-dots { margin-top: 2rem; gap: 8px; } .pagination-dot.active { width: 24px; } }
+        @media (max-width: 480px) { .side-arrow { width: 44px; height: 44px; } .side-arrow svg { width: 18px; height: 18px; } .timeline-card { padding: 1.8rem 1.2rem; min-height: 340px; } .timeline-number { font-size: 3.5rem; } }
+
+        /* ===== HOW IT WORKS SECTION ===== */
+        .how-section { position: relative; background-image: url('https://i.ibb.co.com/cSGykPyZ/black-texture-background-3.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; overflow: hidden; }
+        .how-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.48); z-index: 1; pointer-events: none; }
+        .how-content { position: relative; z-index: 10; }
+        .badge-row { display: flex; align-items: center; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+        .badge-line { height: 1px; width: 2rem; background: rgba(255,255,255,0.3); }
+        .badge-text { color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 900; letter-spacing: 0.4em; text-transform: uppercase; }
+        .section-title { font-family: var(--font-display); font-size: clamp(4rem, 8vw, 7rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; color: #ffffff; margin-bottom: 1rem; text-align: center; }
+        .section-subtitle { font-size: 1.3rem; color: rgba(255,255,255,0.45); font-weight: 400; text-align: center; letter-spacing: 0.02em; margin-bottom: 6rem; }
+        .steps-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6rem; max-width: 1400px; margin: 0 auto; padding: 0 3rem; }
+        .step-item { display: flex; flex-direction: column; }
+        .step-number { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-bottom: 1.25rem; }
+        .step-title { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: #ffffff; margin-bottom: 1rem; }
+        .step-desc { font-size: 1.35rem; line-height: 1.7; color: rgba(255,255,255,0.55); font-weight: 400; }
+        @media (max-width: 1024px) { .steps-row { gap: 3rem; padding: 0 2rem; } .step-number { font-size: 1.1rem; } .step-title { font-size: 1.8rem; } .step-desc { font-size: 1.15rem; } }
+        @media (max-width: 768px) { .steps-row { grid-template-columns: 1fr; gap: 4rem; max-width: 550px; } .section-subtitle { margin-bottom: 4rem; } .step-number { font-size: 1.2rem; } .step-title { font-size: 2rem; } .step-desc { font-size: 1.2rem; } }
+
+        /* ===== CHANNEL SHOWCASE SECTION ===== */
+        .showcase-section { position: relative; padding: 6rem 1rem; background: url('https://i.ibb.co.com/cSGykPyZ/black-texture-background-3.jpg') center/cover fixed; overflow: hidden; }
+        .showcase-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1; pointer-events: none; }
+        .showcase-content { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; transform: scale(1.05); transform-origin: center top; }
+        .tab-btn { padding: .7rem 1.4rem; border-radius: .85rem; font-size: 10px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; transition: all .4s ease; display: flex; align-items: center; gap: .7rem; cursor: pointer; border: none; background: transparent; color: rgba(255,255,255,.4); }
+        .tab-btn:hover { color: rgba(255,255,255,.8); }
+        .tab-btn.active { background: #fff; color: #000; box-shadow: 0 20px 40px rgba(0,0,0,.5); }
+        .tab-btn img { width: 18px; height: 18px; object-fit: contain; }
+        .tab-panel.hidden { display: none; }
+        .feature-row { display: flex; gap: 2rem; transition: all .4s ease; }
+        .feature-icon { width: 3.5rem; height: 3.5rem; border-radius: 1.2rem; background: rgba(255,255,255,.03); border: 1px solid rgba(255,255,255,.06); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: border-color .4s ease; }
+        .feature-row:hover .feature-icon { border-color: rgba(255,255,255,.2); }
+        .feature-title { font-size: 1.3rem; font-weight: 600; color: #fff; margin-bottom: .5rem; letter-spacing: -.02em; font-family: 'Space Grotesk', sans-serif; transition: transform .3s ease; }
+        .feature-row:hover .feature-title { transform: translateX(4px); }
+        .feature-desc { font-size: 1rem; line-height: 1.6; color: rgba(148,163,184,.8); font-weight: 300; max-width: 28rem; }
+        .chat-clone-wrapper { display: flex; justify-content: center; width: 100%; }
+        .wa-clone,.fb-clone,.ig-clone { display: flex; flex-direction: column; width: 100%; max-width: 500px; height: 620px; background: transparent; position: relative; margin: 0 auto; overflow: hidden; font-family: 'Inter', system-ui, sans-serif; }
+        .chat-header { background: #101010; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; border-radius: 24px; margin-bottom: 4px; z-index: 10; }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .avatar-wrap { position: relative; width: 40px; height: 40px; flex-shrink: 0; }
+        .avatar { width: 40px; height: 40px; border-radius: 50%; overflow: hidden; background: #2a3942; display: flex; align-items: center; justify-content: center; }
+        .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .online-dot { position: absolute; bottom: 0; right: 0; width: 11px; height: 11px; background: #31a24c; border-radius: 50%; border: 2px solid #101010; }
+        .contact-info h3 { color: #e9edef; font-size: 16px; font-weight: 500; margin-bottom: 2px; }
+        .contact-info p { color: #8696a1; font-size: 13px; }
+        .header-right { display: flex; gap: 22px; align-items: center; }
+        .icon-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0; opacity: 0.9; transition: opacity .2s; }
+        .icon-btn:hover { opacity: 0.65; }
+        .stroke-icon { width: 22px; height: 22px; stroke: #fff; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .chat-messages { flex: 1; overflow-y: auto; padding: 20px 16px 16px; display: flex; flex-direction: column; gap: 8px; background: transparent; scroll-behavior: smooth; }
+        .chat-messages::-webkit-scrollbar { display: none; }
+        .chat-messages { -ms-overflow-style: none; scrollbar-width: none; }
+        .message-row { display: flex; width: 100%; animation: fadeUp .35s ease forwards; }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        .message-row.sent { justify-content: flex-end; } .message-row.received { justify-content: flex-start; }
+        .bubble { max-width: 80%; padding: 8px 12px; border-radius: 18px; position: relative; word-wrap: break-word; font-size: 14.2px; line-height: 1.4; box-shadow: 0 1px .5px rgba(0,0,0,.12); }
+        .bubble.wa-sent { background: #005c4b; color: #e1e9ee; border-radius: 18px 18px 4px 18px; }
+        .bubble.wa-rec { background: #202c33; color: #e9edef; border-radius: 18px 18px 18px 4px; }
+        .bubble.fb-sent,.bubble.ig-sent { background: #4b55f5; color: #fff; border-radius: 18px 18px 4px 18px; }
+        .bubble.fb-rec,.bubble.ig-rec { background: #262626; color: #e0e0e0; border-radius: 18px 18px 18px 4px; }
+        .message-meta { display: flex; align-items: center; justify-content: flex-end; gap: 3px; margin-top: 3px; font-size: 10px; color: rgba(255,255,255,.4); }
+        .bubble-text { margin-bottom: 2px; line-height: 1.4; }
+        .typing-wrap { animation: fadeUp .3s ease forwards; }
+        .typing-bubble { background: #202c33; padding: 10px 16px; border-radius: 18px 18px 18px 4px; display: inline-flex; align-items: center; gap: 6px; }
+        .typing-bubble.fb-typing,.typing-bubble.ig-typing { background: #262626; }
+        .dot { width: 6px; height: 6px; background: #8696a1; border-radius: 50%; display: inline-block; animation: wave 1.4s infinite ease-in-out; }
+        .dot:nth-child(1) { animation-delay: -.32s; } .dot:nth-child(2) { animation-delay: -.16s; } .dot:nth-child(3) { animation-delay: 0s; }
+        @keyframes wave { 0%, 80%, 100% { transform: scale(.8); opacity: .5; } 40% { transform: scale(1.2); opacity: 1; background: #e9edef; } }
+        .chat-footer { background: #222427; padding: 8px 16px; display: flex; align-items: center; gap: 10px; flex-shrink: 0; border-radius: 24px; margin-top: 4px; }
+        .chat-footer.fb-footer { background: #1a1a1a; } .chat-footer.ig-footer { background: #121212; }
+        .footer-icon-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0; opacity: 0.9; flex-shrink: 0; }
+        .stroke-icon-w { width: 22px; height: 22px; stroke: #fff; stroke-width: 1.5; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+        .input-wrap { flex: 1; display: flex; align-items: center; }
+        .input-wrap input { background: transparent; border: none; outline: none; color: #e9edef; font-size: 15px; width: 100%; font-family: inherit; padding: 8px 0; }
+        .input-wrap input::placeholder { color: #8696a1; font-weight: 400; }
+        .fb-footer .input-wrap { background: #3a3b3c; border-radius: 22px; padding: 6px 14px; } .fb-footer .input-wrap input { padding: 6px 0; }
+        .react-btn { background: none; border: none; cursor: pointer; font-size: 20px; flex-shrink: 0; opacity: 0.9; transition: opacity .2s; } .react-btn:hover { opacity: 0.65; }
+        @media (max-width: 1024px) { .showcase-grid { flex-direction: column; gap: 3rem; } }
+        @media (max-width: 768px) { .showcase-content { transform: none !important; } .wa-clone,.fb-clone,.ig-clone { max-width: 100%; height: 560px; } }
+
+        /* ===== CTA SECTION ===== */
+        .cta-section { position: relative; padding: 7rem 1.5rem; background-image: url('https://i.ibb.co/WLTdDRz/building-night-with-windows-illuminated-with-red-white-lights.jpg'); background-size: cover; background-position: center 30%; background-repeat: no-repeat; background-attachment: fixed; isolation: isolate; overflow: hidden; }
+        .cta-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.7); backdrop-filter: brightness(0.9); z-index: 1; pointer-events: none; }
+        .cta-content { position: relative; z-index: 10; max-width: 880px; margin: 0 auto; text-align: center; }
+        .cta-section .btn-primary { border-radius: 40px; font-family: 'Inter', sans-serif; padding: 1.15rem 2.5rem; font-size: 0.9rem; letter-spacing: 0.08em; }
+        .cta-section .btn-primary:hover { background: #f0f0f0; box-shadow: 0 20px 35px -8px rgba(255,255,255,0.25); }
+        @media (max-width: 768px) { .cta-section { padding: 5rem 1rem; background-attachment: scroll; } .cta-section .btn-primary { padding: 1rem 2rem; font-size: 0.8rem; } }
+
+        /* ===== FOOTER SECTION ===== */
+        .footer-section { position: relative; padding: 5rem 1.5rem 2.5rem; background: #050505; border-top: 1px solid rgba(255,255,255,0.05); overflow: hidden; }
+        .footer-content { max-width: 1280px; margin: 0 auto; width: 100%; }
+        .footer-logo { width: 52px; height: 52px; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; background: #0a0a0a; flex-shrink: 0; border: 1px solid rgba(255,255,255,0.1); }
+        .footer-logo img { width: 72%; height: 72%; object-fit: contain; filter: brightness(1.2) contrast(1.1); transition: filter 0.2s; }
+        .footer-link { color: rgba(255,255,255,0.55); text-decoration: none; font-size: 0.9rem; font-weight: 450; transition: color 0.2s ease; display: inline-flex; align-items: center; gap: 6px; letter-spacing: -0.01em; }
+        .footer-link:hover { color: #ffffff; }
+        .social-link { width: 46px; height: 46px; border-radius: 40px; border: 1.5px solid rgba(255,255,255,0.4); background: transparent; display: inline-flex; align-items: center; justify-content: center; color: #ffffff; cursor: pointer; transition: all 0.25s cubic-bezier(0.2,0.9,0.4,1.1); text-decoration: none; backdrop-filter: blur(2px); }
+        .social-link:hover { background: #ffffff; color: #050505; border-color: #ffffff; transform: scale(1.06); }
+        .footer-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        @media (max-width: 1024px) { .footer-grid { gap: 2.5rem; } }
+        @media (max-width: 768px) { .footer-section { padding: 3rem 1.25rem 2rem; } .footer-grid { display: flex; flex-direction: column; gap: 2.5rem; } .social-link { width: 42px; height: 42px; } }
+        @media (max-width: 480px) { .cta-section .btn-primary { padding: 0.9rem 1.5rem; font-size: 0.75rem; } .social-link { width: 38px; height: 38px; } }
+        @media (min-width: 1400px) { .cta-content h2 { font-size: 5rem; } }
+    </style>
+    <script>function initApollo(){var n=Math.random().toString(36).substring(7),o=document.createElement("script");
+o.src="https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache="+n,o.async=!0,o.defer=!0,
+o.onload=function(){window.trackingFunctions.onLoad({appId:"69fce86e6d12d3001d577d6a"})},
+document.head.appendChild(o)}initApollo();</script>
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- HERO SECTION                   -->
+    <!-- ============================== -->
+    <div class="hero-background"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-cyan-tint"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-20 h-[70px] flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center cursor-pointer group logo-container">
+                    <img src="https://i.ibb.co.com/Kjp5x7vX/ELv-RT-6.png" alt="ELVRT Logo" style="mix-blend-mode: screen;">
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="#solutions" class="nav-link">Solutions</a>
+                    <a href="#infinite-performance" class="nav-link">Process</a>
+                    <a href="#impact" class="nav-link">Impact</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-5">
+                <div class="hidden md:flex items-center gap-4 mr-2">
+                    <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" class="social-icon" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" class="social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                </div>
+                <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" rel="noopener noreferrer" class="btn-primary">Get Started <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="solutions" class="relative pt-32 pb-32 md:pt-48 md:pb-48 min-h-screen flex items-center overflow-hidden">
+        <div class="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-16 lg:gap-24 lg:items-start relative z-10">
+            <div class="relative z-20">
+                <h1 class="hero-title mb-6 md:mb-10">
+                    <span class="hero-title-main">Automate Your Agency</span>
+                    <span class="hero-title-sub">WITH AI SALES AGENT</span>
+                </h1>
+                <p class="hero-description max-w-2xl">Your leads, qualified. Your calendar, filled. Your deals, closed — on autopilot.</p>
+                <div class="flex flex-col sm:flex-row items-center gap-6 md:gap-8 justify-center lg:justify-start">
+                    <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" rel="noopener noreferrer" class="btn-primary">Book a Strategy Call <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                    <button class="btn-secondary">View Services</button>
+                </div>
+                <div class="mt-20 md:mt-28 pt-10 border-t border-white/5 opacity-45">
+                    <div class="text-xs font-mono tracking-widest uppercase" style="color: var(--color-text-dim); font-size: 10px;">Enterprise Grade Infrastructure</div>
+                </div>
+            </div>
+            <div class="relative flex justify-center lg:justify-end">
+                <div class="floating-chat-area" id="chatArea"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- FEATURES SECTION               -->
+    <!-- ============================== -->
+    <section id="infinite-performance" class="features-section relative py-32 md:py-40 px-6 overflow-hidden">
+        <div class="features-content max-w-7xl mx-auto">
+            <div class="mb-20 text-center">
+                <div class="flex items-center justify-center gap-3 mb-6"><div class="h-[1px] w-8 bg-orange-400/50"></div><span class="text-orange-400 text-[10px] font-black uppercase tracking-[0.4em]">Infrastructure</span></div>
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-display font-semibold text-white mb-6 leading-[1.05] tracking-[-0.03em]">Infinite Performance</h2>
+                <p class="text-text-dim text-lg md:text-xl max-w-3xl leading-relaxed font-light tracking-tight opacity-80 mx-auto">ELVRT is not just a chatbot. It's an entire backend workforce, fine-tuned on multi-million dollar transaction data and high-intent buyer psychology.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="cards-container"></div>
+        </div>
+        <div id="modal-container"></div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- CAROUSEL SECTION               -->
+    <!-- ============================== -->
+    <section id="why-elvrt" class="why-section relative py-28 md:py-36 overflow-hidden">
+        <div class="why-content">
+            <div class="mb-12 px-6">
+                <div class="flex items-center justify-center gap-3 mb-6"><div class="h-[1px] w-8 bg-orange-400/50"></div><span class="text-orange-400 text-[10px] font-black uppercase tracking-[0.4em]">The Advantage</span></div>
+                <h2 class="text-5xl md:text-6xl lg:text-7xl font-display font-semibold text-white mb-6 leading-[1.05] tracking-[-0.03em] text-center">Why ELVRT Tech?</h2>
+                <p class="text-text-dim text-lg md:text-xl max-w-2xl leading-relaxed font-light tracking-tight opacity-80 mx-auto text-center">Engineered for agencies that demand peak performance and uncompromising efficiency.</p>
+            </div>
+            <div class="carousel-wrapper">
+                <div class="carousel-container" id="carouselContainer">
+                    <div class="card-stage" id="cardStage"></div>
+                    <button class="side-arrow arrow-left" id="leftArrow" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+                    <button class="side-arrow arrow-right visible" id="rightArrow" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+                </div>
+                <div class="pagination-dots" id="paginationDots"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- HOW IT WORKS SECTION           -->
+    <!-- ============================== -->
+    <section id="how-it-works" class="how-section relative py-32 md:py-44 overflow-hidden">
+        <div class="how-content">
+            <div class="mb-4 px-4">
+                <div class="badge-row"><div class="badge-line"></div><span class="badge-text">The Protocol</span></div>
+                <h2 class="section-title">How It Works</h2>
+                <p class="section-subtitle">Three steps. Seven days. Fully automated.</p>
+            </div>
+            <div class="steps-row" id="stepsRow">
+                <div class="step-item"><span class="step-number">Step 01</span><h3 class="step-title">Book Consultation</h3><p class="step-desc">Tell us how your agency currently operates. We listen, audit your lead flow, and identify exactly where time and deals are being lost.</p></div>
+                <div class="step-item"><span class="step-number">Step 02</span><h3 class="step-title">We Build Your AI Systems</h3><p class="step-desc">We build and configure your entire automation infrastructure — AI responses, CRM sync, follow-up sequences, and calendar booking — tailored to your agency.</p></div>
+                <div class="step-item"><span class="step-number">Step 03</span><h3 class="step-title">You Scale Faster</h3><p class="step-desc">Go live in 7 days. Watch response times drop to seconds, leads get qualified automatically, and your calendar fill with serious buyers — on autopilot.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- CHANNEL SHOWCASE SECTION       -->
+    <!-- ============================== -->
+    <section class="showcase-section" id="channel-showcase">
+        <div class="showcase-content">
+            <div class="showcase-grid grid lg:grid-cols-2 gap-16 lg:gap-20 items-center">
+                <div>
+                    <div class="flex flex-wrap gap-2 mb-8 p-1.5 rounded-xl w-fit" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05)">
+                        <button class="tab-btn active" data-tab="whatsapp"><img src="https://img.icons8.com/color/48/whatsapp--v1.png" alt="WhatsApp"> WhatsApp</button>
+                        <button class="tab-btn" data-tab="facebook"><img src="https://img.icons8.com/color/48/facebook-messenger--v1.png" alt="Facebook"> Facebook</button>
+                        <button class="tab-btn" data-tab="instagram"><img src="https://img.icons8.com/color/48/instagram-new--v1.png" alt="Instagram"> Instagram</button>
+                    </div>
+                    <div id="tab-panels"></div>
+                </div>
+                <div class="chat-clone-wrapper" id="chatCloneWrapper"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- CTA SECTION                    -->
+    <!-- ============================== -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="text-4xl md:text-6xl lg:text-7xl font-display font-semibold text-white mb-5 leading-[1.1] tracking-[-0.02em]">
+                Ready to build the silence?
+            </h2>
+            <p class="text-base md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto font-light px-4" style="color: rgba(148, 163, 184, 0.9);">
+                Stop losing deals to slow responses and dead pipelines. ELVRT captures, qualifies, and nurtures every lead — while you focus on closing.
+            </p>
+            <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                Book a Strategy Call
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- FOOTER SECTION                 -->
+    <!-- ============================== -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div style="grid-column: span 5 / span 5;">
+                    <div class="flex items-center gap-4 mb-5 flex-wrap">
+                        <div class="footer-logo"><img src="https://i.ibb.co.com/LXXWh1XD/ELv-RT-6.png" alt="ELVRT logo" loading="lazy"></div>
+                        <div>
+                            <h4 class="text-2xl font-display font-semibold text-white tracking-tight leading-tight">ELVRT</h4>
+                            <p class="text-[11px] font-bold uppercase tracking-[0.3em] text-white/30 mt-1">AI Automation for Real Estate</p>
+                        </div>
+                    </div>
+                    <p class="text-sm text-dim leading-relaxed max-w-sm mb-6">Built for real estate professionals who refuse to leave deals on the table.</p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div style="grid-column: span 3 / span 3; grid-column-start: 9;">
+                    <h5 class="text-[11px] font-black uppercase tracking-[0.5em] text-white/30 mb-5">Company</h5>
+                    <ul class="space-y-4" style="list-style: none;">
+                        <li><a href="#" class="footer-link">About</a></li>
+                        <li><a href="#" class="footer-link">Contact</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                    </ul>
+                </div>
+                <div style="grid-column: span 3 / span 3;">
+                    <h5 class="text-[11px] font-black uppercase tracking-[0.5em] text-white/30 mb-5">Legal</h5>
+                    <ul class="space-y-4" style="list-style: none;">
+                        <li><a href="#" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="#" class="footer-link">Terms of Service</a></li>
+                        <li><a href="#" class="footer-link">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <p class="text-[11px] md:text-xs text-white/30 tracking-wide">© 2025 ELVRT. All rights reserved.</p>
+                <p class="text-[11px] md:text-xs text-white/20 font-mono tracking-wide">Built for real estate. Backed by AI.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================== -->
+    <!-- JAVASCRIPT                     -->
+    <!-- ============================== -->
+    <script>
+        // ===== NAVBAR SCROLL =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // ===== FLOATING CHAT BUBBLES =====
+        const chatArea = document.getElementById('chatArea');
+        const sequence = [
+            { role: 'received', text: "Hi! I saw you're interested in 422 Oak Lane. Are you looking for a primary residence or investment property?", delay: 900 },
+            { role: 'sent', text: "Looking for my family. We need to be near the Willow District schools.", delay: 2600 },
+            { role: 'received', text: "Great choice! That location is highly sought after. Would you like me to book a private viewing for tomorrow at 2 PM?", delay: 2900 },
+            { role: 'sent', text: "That works for us. What's the next step?", delay: 2500 },
+            { role: 'received', text: "Perfect! I've scheduled your viewing and sent confirmation with gate code to your email. See you there!", delay: 2300 }
+        ];
+
+        function scrollChatToBottom() { 
+            chatArea.scrollTo({ top: chatArea.scrollHeight, behavior: 'smooth' }); 
+        }
+
+        function addMessage(msg) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    if (msg.role === 'received') {
+                        const typing = document.createElement('div');
+                        typing.className = 'typing-indicator';
+                        typing.innerHTML = '<div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div>';
+                        chatArea.appendChild(typing);
+                        scrollChatToBottom();
+                        
+                        setTimeout(() => {
+                            typing.style.opacity = '0';
+                            setTimeout(() => {
+                                typing.remove();
+                                const div = document.createElement('div');
+                                div.className = `msg-bubble msg-${msg.role}`;
+                                div.innerHTML = `<div>${msg.text}</div><div class="msg-timestamp">${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>`;
+                                chatArea.appendChild(div);
+                                scrollChatToBottom();
+                                resolve();
+                            }, 300);
+                        }, 1200);
+                    } else {
+                        const div = document.createElement('div');
+                        div.className = `msg-bubble msg-${msg.role}`;
+                        div.innerHTML = `<div>${msg.text}</div><div class="msg-timestamp">${new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'})}</div>`;
+                        chatArea.appendChild(div);
+                        scrollChatToBottom();
+                        resolve();
+                    }
+                }, msg.delay || 1500);
+            });
+        }
+
+        async function runChat() {
+            chatArea.innerHTML = '';
+            for (let i = 0; i < sequence.length; i++) { 
+                await addMessage(sequence[i]); 
+            }
+            setTimeout(runChat, 5500);
+        }
+
+        window.addEventListener('load', () => setTimeout(runChat, 1200));
+
+        // ===== FEATURE CARDS + MODAL =====
+        (function() {
+            const modules = [
+                { id: 'lead-qualification', icon: 'filter', title: 'Lead Qualification', shortDesc: 'AI instantly identifies serious buyers from noise — so you only speak to people ready to move.', specs: [{ label: 'Qualification Speed', value: 'Real-time' }, { label: 'Accuracy', value: 'Intent-based' }, { label: 'Manual Effort', value: 'Zero' }], longDesc: 'Every inquiry is analyzed against real-time market data and buyer psychology. ELVRT scores each lead before it ever reaches your phone — filtering out window shoppers and surfacing verified, high-intent buyers automatically.' },
+                { id: 'automated-followup', icon: 'refresh-cw', title: 'Automated Follow-up', shortDesc: 'Cold leads don\'t die here. ELVRT keeps the conversation alive over days and weeks — automatically.', specs: [{ label: 'Follow-up Duration', value: 'Long-term' }, { label: 'Personalization', value: 'AI-driven' }, { label: 'Manual Entry', value: 'Zero' }], longDesc: 'Most deals are lost in the silence between contacts. ELVRT automatically checks in with your leads over days and weeks — sending personalized messages that build trust and keep your name top of mind until they\'re ready to move.' },
+                { id: 'crm-automation', icon: 'database', title: 'CRM Automation', shortDesc: 'Every lead, every conversation, every status update — synced to your CRM instantly. No manual entry.', specs: [{ label: 'Manual Entry', value: 'Zero' }, { label: 'Scoring', value: 'Auto-Lead' }, { label: 'Sync', value: 'Real-time' }], longDesc: 'ELVRT bridges your lead sources directly to your existing CRM — Follow Up Boss, LionDesk, HubSpot, and more. Every conversation is logged, every lead is tagged and scored, so your pipeline stays clean and actionable at all times.' },
+                { id: 'customer-support', icon: 'message-circle', title: '24/7 Customer Support', shortDesc: 'Every question answered, every inquiry handled — instantly, around the clock, without you lifting a finger.', specs: [{ label: 'Response Time', value: '<10 seconds' }, { label: 'Availability', value: '24/7' }, { label: 'Human Handoff', value: 'Seamless' }], longDesc: 'ELVRT acts as your always-on digital concierge. Whether a buyer messages at 2 PM or 2 AM — they get an instant, intelligent response. Common questions, property details, scheduling requests — all handled before you even see the notification.' },
+                { id: 'property-showcasing', icon: 'home', title: 'Property Showcasing', shortDesc: 'High-res assets, property details, and availability — delivered to buyers instantly on demand.', specs: [{ label: 'Asset Delivery', value: 'Instant' }, { label: 'Availability', value: 'Real-time' }, { label: 'Manual Effort', value: 'Zero' }], longDesc: 'ELVRT delivers your property portfolio directly inside the conversation. Buyers get high-resolution photos, floor plans, pricing, and availability — without waiting for you to manually send anything. Your listings work for you 24/7.' },
+                { id: 'instant-engagement', icon: 'zap', title: 'Instant Engagement', shortDesc: 'The first response wins the deal. ELVRT engages every new inquiry within seconds — day or night.', specs: [{ label: 'Response Time', value: '<10 seconds' }, { label: 'Uptime', value: '24/7' }, { label: 'Coverage', value: 'All Channels' }], longDesc: 'Speed-to-lead is everything in real estate. Studies show the first agent to respond wins 78% of the time. ELVRT intercepts every new inquiry across all your channels and responds within seconds — so you never lose a deal to slow response again.' }
+            ];
+            
+            const cardsContainer = document.getElementById('cards-container');
+            const modalContainer = document.getElementById('modal-container');
+
+            function renderCards() {
+                cardsContainer.innerHTML = '';
+                modules.forEach((mod, i) => {
+                    const card = document.createElement('div');
+                    card.className = 'feature-card';
+                    card.setAttribute('data-index', i);
+                    card.innerHTML = `
+                        <div class="card-content">
+                            <div class="card-icon-box"><i data-lucide="${mod.icon}" class="w-7 h-7" style="color: #ffffff;"></i></div>
+                            <h3 class="card-title">${mod.title}</h3>
+                            <p class="card-description">${mod.shortDesc}</p>
+                            <div class="learn-more">Learn more<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+                        </div>
+                    `;
+                    card.addEventListener('click', () => openModal(i));
+                    cardsContainer.appendChild(card);
+                });
+                
+                if (window.lucide) lucide.createIcons();
+                
+                gsap.registerPlugin(ScrollTrigger);
+                gsap.utils.toArray('.feature-card').forEach((card, i) => {
+                    gsap.fromTo(card, { opacity: 0, y: 40, scale: 0.96 }, { 
+                        opacity: 1, y: 0, scale: 1, duration: 0.7, delay: i * 0.08, ease: "power3.out", 
+                        scrollTrigger: { trigger: card, start: "top 92%", toggleActions: "play none none none" } 
+                    });
+                });
+            }
+
+            function openModal(index) {
+                const mod = modules[index];
+                const backdrop = document.createElement('div');
+                backdrop.className = 'modal-backdrop fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8';
+                backdrop.addEventListener('click', (e) => { if (e.target === backdrop) closeModal(); });
+                
+                const card = document.createElement('div');
+                card.className = 'modal-card p-8 md:p-12 w-full max-w-3xl modal-enter';
+                card.addEventListener('click', (e) => e.stopPropagation());
+                
+                const specsRows = mod.specs.map(s => `
+                    <div class="spec-row flex items-center justify-between py-4 group/spec">
+                        <span class="text-white/40 font-semibold uppercase tracking-wider text-[10px] group-hover/spec:text-white/70 transition-colors">${s.label}</span>
+                        <span class="text-white font-display text-base tracking-tight font-medium">${s.value}</span>
+                    </div>
+                `).join('');
+                
+                card.innerHTML = `
+                    <button class="modal-close-btn"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    <div class="modal-content">
+                        <div class="flex flex-col md:flex-row items-start md:items-center gap-5 mb-8">
+                            <div class="modal-icon-box"><i data-lucide="${mod.icon}" class="w-7 h-7" style="color: #ffffff;"></i></div>
+                            <div><h2 class="text-3xl md:text-4xl font-display font-semibold text-white tracking-tight">${mod.title}</h2></div>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-10 items-start">
+                            <div>
+                                <p class="text-base text-text-dim leading-relaxed font-light mb-8">${mod.longDesc}</p>
+                                <button class="modal-cta-btn">Initialize This Module<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+                            </div>
+                            <div class="space-y-0.5">
+                                <h5 class="text-[9px] font-black uppercase tracking-[0.45em] text-white/20 pb-4 border-b border-white/[0.06] mb-1">Technical Specifications</h5>
+                                ${specsRows}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                backdrop.appendChild(card);
+                modalContainer.appendChild(backdrop);
+                if (window.lucide) lucide.createIcons();
+                
+                card.querySelector('.modal-close-btn').addEventListener('click', closeModal);
+                card.querySelector('.modal-cta-btn').addEventListener('click', () => { alert(`Module "${mod.title}" initialized. (Demo action)`); });
+                
+                requestAnimationFrame(() => card.classList.add('modal-enter-active'));
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                const backdrop = modalContainer.querySelector('.modal-backdrop');
+                if (!backdrop) return;
+                const card = backdrop.querySelector('.modal-card');
+                if (card) card.classList.remove('modal-enter-active');
+                setTimeout(() => { backdrop.remove(); document.body.style.overflow = ''; }, 320);
+            }
+
+            document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+            window.addEventListener('DOMContentLoaded', () => renderCards());
+        })();
+
+        // ===== CAROUSEL SECTION =====
+        (function() {
+            const timelineItems = [
+                { number: '01', title: 'Stop Losing Leads to Silence', desc: 'Every unanswered inquiry is a lost deal. ELVRT responds within seconds — 24/7 — so no lead ever goes cold again.' },
+                { number: '02', title: 'Reclaim 20+ Hours Every Week', desc: 'No more manual data entry, lead tagging, or CRM logging. ELVRT handles the admin so you handle the closings.' },
+                { number: '03', title: 'Only Speak to Serious Buyers', desc: 'Our AI vetting filters out window shoppers before they reach you. Your time goes to people ready to move — not people just browsing.' },
+                { number: '04', title: 'Scale Without Adding Headcount', desc: 'Grow your pipeline without growing your payroll. ELVRT handles the volume of a full team — at a fraction of the cost.' },
+                { number: '05', title: 'Your Entire Operation. One System.', desc: 'CRM sync, follow-ups, property showcasing, calendar booking — all running from a single automated infrastructure built for your agency.' },
+                { number: '06', title: 'Built Exclusively for Real Estate', desc: 'Not a generic chatbot. ELVRT is engineered around real estate vocabulary, buyer psychology, and high-intent conversion logic.' }
+            ];
+            
+            const totalSlides = timelineItems.length;
+            let currentIndex = 0, isAnimating = false, autoInterval = null;
+            const AUTO_DELAY_MS = 3000;
+            
+            const cardStage = document.getElementById('cardStage');
+            const leftArrow = document.getElementById('leftArrow');
+            const rightArrow = document.getElementById('rightArrow');
+            const paginationDots = document.getElementById('paginationDots');
+
+            function createCardElement(item, index) { const card = document.createElement('div'); card.className = 'timeline-card'; card.setAttribute('data-index', index); card.innerHTML = `<div class="card-content-inner"><div class="timeline-number">${item.number}</div><h3 class="timeline-title">${item.title}</h3><p class="timeline-desc">${item.desc}</p></div>`; return card; }
+            function createPaginationDots() { paginationDots.innerHTML = ''; for (let i = 0; i < totalSlides; i++) { const dot = document.createElement('button'); dot.className = 'pagination-dot'; dot.setAttribute('data-dot-index', i); dot.addEventListener('click', (e) => { e.stopPropagation(); if (!isAnimating) { animateToIndex(parseInt(dot.getAttribute('data-dot-index'), 10)); resetAutoTimer(); } }); paginationDots.appendChild(dot); } updateActiveDot(); }
+            function updateActiveDot() { const dots = paginationDots.querySelectorAll('.pagination-dot'); dots.forEach((dot, idx) => { if (idx === currentIndex) dot.classList.add('active'); else dot.classList.remove('active'); }); }
+            function updateArrows() { if (currentIndex === 0) leftArrow.classList.remove('visible'); else leftArrow.classList.add('visible'); if (currentIndex === totalSlides - 1) rightArrow.classList.remove('visible'); else rightArrow.classList.add('visible'); }
+            function refreshCardsLayout() { const allCards = cardStage.querySelectorAll('.timeline-card'); if (!allCards.length) return; allCards.forEach(card => card.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next', 'exit-left', 'exit-right')); for (let i = 0; i < allCards.length; i++) { let distance = i - currentIndex; if (distance > totalSlides / 2) distance -= totalSlides; if (distance < -totalSlides / 2) distance += totalSlides; if (distance === 0) allCards[i].classList.add('active'); else if (distance === -1 || distance === totalSlides - 1) allCards[i].classList.add('prev'); else if (distance === 1 || distance === -(totalSlides - 1)) allCards[i].classList.add('next'); else if (distance <= -2 && distance > -totalSlides/2) allCards[i].classList.add('far-prev'); else if (distance >= 2 && distance < totalSlides/2) allCards[i].classList.add('far-next'); else { if (distance < 0) allCards[i].classList.add('far-prev'); else allCards[i].classList.add('far-next'); } } updateActiveDot(); updateArrows(); }
+            function animateToIndex(newIndex) { if (isAnimating) return; let targetIndex = newIndex; if (targetIndex < 0) targetIndex = totalSlides - 1; if (targetIndex >= totalSlides) targetIndex = 0; if (targetIndex === currentIndex) return; isAnimating = true; let effectiveDirection = targetIndex > currentIndex ? 'right' : 'left'; if (currentIndex === totalSlides - 1 && targetIndex === 0) effectiveDirection = 'right'; if (currentIndex === 0 && targetIndex === totalSlides - 1) effectiveDirection = 'left'; const allCards = cardStage.querySelectorAll('.timeline-card'); const oldActiveCard = allCards[currentIndex]; if (oldActiveCard) { oldActiveCard.classList.add(effectiveDirection === 'right' ? 'exit-left' : 'exit-right'); } currentIndex = targetIndex; refreshCardsLayout(); setTimeout(() => { if (oldActiveCard) { oldActiveCard.classList.remove('exit-left', 'exit-right'); } isAnimating = false; }, 600); }
+            function nextSlide() { if (!isAnimating) { let newIdx = currentIndex + 1; if (newIdx >= totalSlides) newIdx = 0; animateToIndex(newIdx); } }
+            function prevSlide() { if (!isAnimating) { let newIdx = currentIndex - 1; if (newIdx < 0) newIdx = totalSlides - 1; animateToIndex(newIdx); } }
+            function startAutoSlide() { if (autoInterval) clearInterval(autoInterval); autoInterval = setInterval(() => { if (!isAnimating) nextSlide(); }, AUTO_DELAY_MS); }
+            function stopAutoSlide() { if (autoInterval) { clearInterval(autoInterval); autoInterval = null; } }
+            function resetAutoTimer() { if (autoInterval) { clearInterval(autoInterval); autoInterval = setInterval(() => { if (!isAnimating) nextSlide(); }, AUTO_DELAY_MS); } }
+            function initCarousel() { cardStage.innerHTML = ''; timelineItems.forEach((item, idx) => { cardStage.appendChild(createCardElement(item, idx)); }); refreshCardsLayout(); updateArrows(); leftArrow.addEventListener('click', (e) => { e.preventDefault(); if (!isAnimating) { prevSlide(); resetAutoTimer(); } }); rightArrow.addEventListener('click', (e) => { e.preventDefault(); if (!isAnimating) { nextSlide(); resetAutoTimer(); } }); document.addEventListener('keydown', (e) => { const section = document.getElementById('why-elvrt'); if (!section) return; const rect = section.getBoundingClientRect(); const isVisible = rect.top < window.innerHeight && rect.bottom > 0; if (!isVisible) return; if (e.key === 'ArrowLeft') { e.preventDefault(); if (!isAnimating) { prevSlide(); resetAutoTimer(); } } else if (e.key === 'ArrowRight') { e.preventDefault(); if (!isAnimating) { nextSlide(); resetAutoTimer(); } } }); let touchStartX = 0; cardStage.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true }); cardStage.addEventListener('touchend', (e) => { if (touchStartX && !isAnimating) { const diff = touchStartX - e.changedTouches[0].screenX; if (Math.abs(diff) > 45) { if (diff > 0) nextSlide(); else prevSlide(); resetAutoTimer(); } touchStartX = 0; } }); const wrapper = document.querySelector('.carousel-wrapper'); if (wrapper) { wrapper.addEventListener('mouseenter', stopAutoSlide); wrapper.addEventListener('mouseleave', startAutoSlide); wrapper.addEventListener('touchstart', stopAutoSlide); wrapper.addEventListener('touchend', startAutoSlide); } startAutoSlide(); }
+            function initRevealAnimation() { gsap.registerPlugin(ScrollTrigger); gsap.fromTo('.carousel-wrapper', { opacity: 0, y: 45 }, { opacity: 1, y: 0, duration: 0.85, ease: "power3.out", scrollTrigger: { trigger: '.carousel-wrapper', start: "top 85%", toggleActions: "play none none reverse" } }); }
+            window.addEventListener('DOMContentLoaded', () => { createPaginationDots(); initCarousel(); initRevealAnimation(); });
+        })();
+
+        // ===== HOW IT WORKS SECTION =====
+        (function() { 
+            gsap.registerPlugin(ScrollTrigger); 
+            function initGSAP() { 
+                gsap.fromTo('.step-item', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: "power3.out", scrollTrigger: { trigger: '.steps-row', start: "top 88%", toggleActions: "play none none none" } }); 
+            } 
+            window.addEventListener('DOMContentLoaded', () => { initGSAP(); }); 
+        })();
+
+        // ===== CHANNEL SHOWCASE SECTION =====
+        (function() { 
+            const LOGO='https://i.ibb.co.com/LXXWh1XD/ELv-RT-6.png'; 
+            const panels={ whatsapp:{badge:'Lead Nurture',badgeColor:'text-emerald-400',badgeLine:'bg-emerald-400/50',title:'WhatsApp Native',subtitle:'The platform your leads already trust. ELVRT operates directly inside WhatsApp — where conversations feel personal and response rates are highest.',features:[{icon:'shield-check',t:'Instant Inquiries',d:'Every property question answered within seconds via WhatsApp — automatically, without you touching your phone.'},{icon:'activity',t:'Media Sharing',d:'Floor plans, high-res photos, and property brochures sent automatically the moment a lead asks.'},{icon:'send',t:'Viewing Booking',d:'Leads book viewings directly inside the chat — no back and forth, no human needed.'}]}, facebook:{badge:'Social Capture',badgeColor:'text-blue-400',badgeLine:'bg-blue-400/50',title:'Facebook DM Automation',subtitle:'Turn every comment, ad click, and page message into a qualified conversation — automatically.',features:[{icon:'sparkles',t:'Ad-to-Chat Flow',d:'Instantly follow up with every lead from your Facebook ads directly inside Messenger — before they forget they clicked.'},{icon:'message-square',t:'Page Inbox Management',d:'Every message to your agency page gets an instant intelligent reply — 24/7, zero manual effort.'},{icon:'shield-check',t:'Lead Qualification',d:'AI identifies serious buyers from casual browsers — so only high-intent leads reach your calendar.'}]}, instagram:{badge:'Growth Engine',badgeColor:'text-pink-400',badgeLine:'bg-pink-400/50',title:'Instagram DM Automation',subtitle:'Your Instagram profile works as a 24/7 lead machine — converting followers and story viewers into booked appointments.',features:[{icon:'sparkles',t:'Ad-to-Chat Flow',d:'Bridge the gap between Instagram ads and real conversations — instantly and automatically.'},{icon:'zap',t:'Vetting Engine',d:'AI identifies serious buyers from casual scrollers — filtering intent before a single minute of your time is spent.'},{icon:'bar-chart-3',t:'Brand Presence',d:'Maintain an always-active DM presence that makes your agency look like a full team — even when it\'s just you.'}]} }; 
+            
+            function waAvatarHTML(){return `<div class="avatar"><img src="${LOGO}" alt="ELvRT"></div>`} function dotAvatarHTML(){return `<div class="avatar-wrap"><div class="avatar"><img src="${LOGO}" alt="ELvRT"></div><div class="online-dot"></div></div>`} const callIconSVG = `<svg class="stroke-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>`; const vidIconSVG = `<svg class="stroke-icon" viewBox="0 0 24 24"><path d="M23 7L16 12L23 17V7Z"/><rect x="2" y="5" width="14" height="14" rx="2" ry="2"/></svg>`; const infoIconSVG = `<svg class="stroke-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16V12M12 8H12.01"/></svg>`; const menuIconSVG = `<svg class="stroke-icon" viewBox="0 0 24 24"><circle cx="12" cy="6" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="12" cy="18" r="1.5"/></svg>`; const configs={ whatsapp:{ cls:'wa-clone',sentCls:'wa-sent',recCls:'wa-rec',typingCls:'', header:`<div class="chat-header"><div class="header-left">${waAvatarHTML()}<div class="contact-info"><h3>ELvRT Real Estate</h3><p>Online</p></div></div><div class="header-right"><button class="icon-btn">${vidIconSVG}</button><button class="icon-btn">${callIconSVG}</button><button class="icon-btn">${menuIconSVG}</button></div></div>`, footer:`<div class="chat-footer"><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14C8.5 16 10 17 12 17C14 17 15.5 16 16 14"/><circle cx="9" cy="9" r="1" fill="white"/><circle cx="15" cy="9" r="1" fill="white"/></svg></button><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><path d="M21.44 11.05L12.25 20.24C11.12 21.37 9.6 22 8 22s-3.12-.63-4.24-1.76C2.63 19.12 2 17.6 2 16s.63-3.12 1.76-4.24L12.33 3.18"/></svg></button><div class="input-wrap"><input type="text" placeholder="Type a message" disabled></div><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3Z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></button></div>`, convos:[{r:'received',t:"Hi! I noticed you inquired about 123 Willow St. Are you looking for a family home or an investment property?",time:"11:00 AM",d:0},{r:'sent',t:"Family home. 3 bedrooms ideally. What's the price range?",time:"11:01 AM",d:3000},{r:'received',t:"Perfect. 123 Willow St is listed at $485,000 — 3 bed, 2 bath, near top-rated schools. Want me to send the full brochure and book a viewing?",time:"11:01 AM",d:4000},{r:'sent',t:"Yes please",time:"11:02 AM",d:2000},{r:'received',t:"Done. Brochure sent. Viewing booked for tomorrow at 3PM. Syncing to CRM...",time:"11:02 AM",d:3000}] }, facebook:{ cls:'fb-clone',sentCls:'fb-sent',recCls:'fb-rec',typingCls:'fb-typing', header:`<div class="chat-header"><div class="header-left">${dotAvatarHTML()}<div class="contact-info"><h3>ELvRT Real Estate</h3><p>Active now</p></div></div><div class="header-right"><button class="icon-btn">${vidIconSVG}</button><button class="icon-btn">${callIconSVG}</button><button class="icon-btn">${infoIconSVG}</button></div></div>`, footer:`<div class="chat-footer fb-footer"><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3Z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></button><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><circle cx="8.5" cy="10.5" r="1.5" fill="white"/><circle cx="15.5" cy="10.5" r="1.5" fill="white"/></svg></button><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 00-3-3V2a3 3 0 00-3 3v4H4v10h16V9h-6z"/></svg></button><div class="input-wrap"><input type="text" placeholder="Aa" disabled></div><button class="react-btn">😊</button></div>`, convos:[{r:'received',t:"Hello! I'm ELVRT Agent — thanks for checking out our listings. What type of property are you looking for?",time:"11:00 AM",d:0},{r:'sent',t:"Modern loft downtown, 2 bedrooms, around $700K.",time:"11:01 AM",d:3000},{r:'received',t:"Great taste! We have a loft at 45 Urban Ave that matches perfectly. Want details?",time:"11:01 AM",d:3500},{r:'sent',t:"Yes, any open houses?",time:"11:02 AM",d:2000},{r:'received',t:"Saturday 11AM-2PM. I can also arrange a private tour. Brochure sent!",time:"11:02 AM",d:3000}] }, instagram:{ cls:'ig-clone',sentCls:'ig-sent',recCls:'ig-rec',typingCls:'ig-typing', header:`<div class="chat-header"><div class="header-left">${dotAvatarHTML()}<div class="contact-info"><h3>alex.river</h3><p>· Real Estate AI</p></div></div><div class="header-right"><button class="icon-btn">${vidIconSVG}</button><button class="icon-btn">${callIconSVG}</button><button class="icon-btn">${infoIconSVG}</button></div></div>`, footer:`<div class="chat-footer ig-footer"><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14C8.5 16 10 17 12 17C14 17 15.5 16 16 14"/><circle cx="9" cy="9" r="1" fill="white"/><circle cx="15" cy="9" r="1" fill="white"/></svg></button><div class="input-wrap"><input type="text" placeholder="Message..." disabled></div><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><path d="M12 2a3 3 0 00-3 3v7a3 3 0 006 0V5a3 3 0 00-3-3Z"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg></button><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="4"/><circle cx="8.5" cy="10.5" r="1.5" fill="white"/><circle cx="15.5" cy="10.5" r="1.5" fill="white"/></svg></button><button class="footer-icon-btn"><svg class="stroke-icon-w" viewBox="0 0 24 24"><path d="M14 9V5a3 3 0 00-3-3V2a3 3 0 00-3 3v4H4v10h16V9h-6z"/></svg></button></div>`, convos:[{r:'received',t:"Hey! I'm ELVRT Agent. Saw you're interested in our new development — how can I help?",time:"11:00 AM",d:0},{r:'sent',t:"Hi! What's the price range on the new penthouses?",time:"11:01 AM",d:3000},{r:'received',t:"Penthouses start at $1.2M up to $2.5M. Want me to send the full brochure?",time:"11:01 AM",d:3500},{r:'sent',t:"Yes, any tours this weekend?",time:"11:02 AM",d:2000},{r:'received',t:"Slots: Sat 10AM, 2PM, Sun 11AM. Which works? Brochure sent!",time:"11:02 AM",d:3000}] } }; 
+            
+            let active='whatsapp',running=false,timers=[],typingEl=null,typingTO=null; 
+            
+            function renderPanels(id){ let h=''; Object.entries(panels).forEach(([k,p])=>{ h+=`<div class="tab-panel${k!==id?' hidden':''}"><div class="mb-4"><div class="flex items-center gap-3 mb-3"><div class="h-px w-8 ${p.badgeLine}"></div><span class="${p.badgeColor} text-[10px] font-black uppercase tracking-[0.4em]">${p.badge}</span></div><h2 class="text-4xl md:text-5xl lg:text-6xl font-display font-semibold text-white mb-2 leading-[1.05] tracking-[-0.03em]">${p.title}</h2><p class="text-dim text-base md:text-lg leading-relaxed font-light max-w-xl opacity-80">${p.subtitle}</p></div><div class="space-y-8 mt-10">${p.features.map(f=>`<div class="feature-row"><div class="feature-icon"><i data-lucide="${f.icon}" class="w-6 h-6 text-white"></i></div><div><h4 class="feature-title">${f.t}</h4><p class="feature-desc">${f.d}</p></div></div>`).join('')}</div></div>`; }); document.getElementById('tab-panels').innerHTML=h; if (window.lucide) lucide.createIcons(); }
+            function clearAll(){timers.forEach(t=>clearTimeout(t));timers=[];if(typingTO){clearTimeout(typingTO);typingTO=null}if(typingEl&&typingEl.parentNode)typingEl.remove();typingEl=null}
+            function showTyping(ct,cfg){ if(typingEl&&typingEl.parentNode)typingEl.remove(); const w=document.createElement('div');w.className='message-row received typing-wrap'; const b=document.createElement('div');b.className=`typing-bubble ${cfg.typingCls}`; b.innerHTML='<span class="dot"></span><span class="dot"></span><span class="dot"></span>'; w.appendChild(b);ct.appendChild(w);typingEl=w;ct.scrollTop=ct.scrollHeight; }
+            function addBubble(ct,txt,time,isSent,cfg){ const r=document.createElement('div');r.className=`message-row ${isSent?'sent':'received'}`; const b=document.createElement('div');b.className=`bubble ${isSent?cfg.sentCls:cfg.recCls}`; const meta=isSent?`${time} <span style="letter-spacing:-0.5px">✓✓</span>`:time; b.innerHTML=`<div class="bubble-text">${txt.replace(/\n/g,'<br>')}</div><div class="message-meta">${meta}</div>`; r.appendChild(b);ct.appendChild(r);ct.scrollTop=ct.scrollHeight; }
+            function runCycle(ct,cfg){ if(!running)return;clearAll();while(ct.firstChild)ct.removeChild(ct.firstChild); const seq=cfg.convos;let i=0; function next(){ if(!running||i>=seq.length){const lt=setTimeout(()=>{if(running)runCycle(ct,cfg)},2000);timers.push(lt);return} const m=seq[i]; if(m.r==='received'&&i===0){addBubble(ct,m.t,m.time,false,cfg);i++;const t=setTimeout(next,m.d);timers.push(t)} else if(m.r==='received'){showTyping(ct,cfg);const t1=setTimeout(()=>{if(typingEl&&typingEl.parentNode)typingEl.remove();typingEl=null;addBubble(ct,m.t,m.time,false,cfg);i++;const t2=setTimeout(next,400);timers.push(t2)},m.d);typingTO=t1;timers.push(t1)} else{const t=setTimeout(()=>{addBubble(ct,m.t,m.time,true,cfg);i++;const t2=setTimeout(next,400);timers.push(t2)},m.d);timers.push(t)} } next(); }
+            function buildChat(id){ const w=document.getElementById('chatCloneWrapper');const c=configs[id]; w.innerHTML=`<div class="${c.cls}">${c.header}<div class="chat-messages" id="msgs-${id}"></div>${c.footer}</div>`; running=true;runCycle(document.getElementById('msgs-'+id),c); }
+            function switchTab(id){ if(id===active)return;active=id;running=false;clearAll(); document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active')); document.querySelector(`[data-tab="${id}"]`).classList.add('active'); renderPanels(id);buildChat(id); }
+            
+            window.addEventListener('DOMContentLoaded', () => { document.querySelectorAll('.tab-btn').forEach(b=>b.addEventListener('click',()=>switchTab(b.dataset.tab))); renderPanels('whatsapp'); buildChat('whatsapp'); }); 
+        })();
+
+        // ===== CTA & FOOTER INTERACTIVITY =====
+        (function() {
+            const allPlaceholderLinks = document.querySelectorAll('.footer-link[href="#"]');
+            allPlaceholderLinks.forEach(link => {
+                link.addEventListener('click', (e) => { e.preventDefault(); });
+            });
+
+            // iOS background attachment fix for CTA
+            if (/iPad|iPhone|iPod/.test(navigator.userAgent) && window.innerWidth < 1024) {
+                const cta = document.querySelector('.cta-section');
+                if(cta) { cta.style.backgroundAttachment = 'scroll'; }
+            }
+        })();
+    </script>
+</body>
+</html>
+
