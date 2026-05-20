@@ -779,34 +779,34 @@
         
         <!-- Right Form -->
         <div class="form-section">
-            <form name="contact" netlify class="contact-form" id="contactForm" novalidate>
+            <form name="contact" method="POST" action="https://formspree.io/f/xgonlypb" class="contact-form" id="contactForm" novalidate>
                 <div class="form-group">
                     <label>Name <span class="required-label">(required)</span></label>
                     <input type="text" name="name" required placeholder="Your full name" />
                     <span class="error-message">This field is required</span>
                 </div>
-                
+
                 <div class="form-group">
                     <label>Email <span class="required-label">(required)</span></label>
                     <input type="email" name="email" required placeholder="your@email.com" />
                     <span class="error-message">This field is required</span>
                 </div>
-                
+
                 <div class="form-group">
                     <label>Company / Agency Name</label>
                     <input type="text" name="company" placeholder="Your company or agency name" />
                 </div>
-                
+
                 <div class="form-group">
                     <label>Company / Agency Website</label>
                     <input type="url" name="website" placeholder="https://yourcompany.com" />
                 </div>
-                
+
                 <div class="form-group">
                     <label>Message</label>
                     <textarea name="message" rows="5" placeholder="Tell us about your project..."></textarea>
                 </div>
-                
+
                 <button type="submit" class="submit-btn">Submit</button>
             </form>
         </div>
