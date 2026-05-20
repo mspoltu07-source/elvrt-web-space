@@ -6,7 +6,11 @@
     "enabled": true
   },
   "assets": {
-    "directory": "."
+    "directory": ".",
+    "html_handling": "drop",
+    "not_found_handling": {
+      "custom_404_page": "404.html"
+    }
   },
   "compatibility_flags": [
     "nodejs_compat"
