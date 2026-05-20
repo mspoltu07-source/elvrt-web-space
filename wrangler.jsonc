@@ -12,6 +12,12 @@
       "custom_404_page": "404.html"
     }
   },
+  "routes": [
+    {
+      "pattern": "/careers",
+      "entrypoint": "careers.html"
+    }
+  ],
   "compatibility_flags": [
     "nodejs_compat"
   ]
