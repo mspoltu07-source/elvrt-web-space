@@ -2,29 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
     <title>Contact - ELVRT Real Estate Tech</title>
+    
+    <!-- Fonts (matching main page) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* ===== CSS VARIABLES (matching main page exactly) ===== */
+        :root {
+            --color-bg: #000000;
+            --color-white: #ffffff;
+            --color-text-dim: #94A3B8;
+            --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Inter', sans-serif;
-            min-height: 100vh;
+            font-family: var(--font-sans);
             background: #1a1a1a;
+            color: #e0e0e0;
+            min-height: 100vh;
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
             overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
         }
         
+        .font-display { font-family: var(--font-display); }
+        .text-dim { color: #94A3B8; }
+        
+        /* Background Image */
         body::before {
             content: '';
             position: fixed;
@@ -40,7 +58,271 @@
             opacity: 0.8;
             z-index: 0;
         }
+
+        /* ===== NAVBAR (Enhanced Mobile Responsive with Hamburger) ===== */
+        .navbar { 
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000; 
+            padding: 0.75rem 1rem; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); 
+            background: transparent !important; backdrop-filter: none !important; 
+            border-bottom: none !important; 
+        }
+        .navbar.scrolled { 
+            padding: 0.5rem 1rem; background: rgba(0,0,0,0.92) !important; 
+            backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.06); 
+        }
         
+        /* Logo Container */
+        .logo-container { 
+            width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; 
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); transition: all 0.4s ease; 
+        }
+        .logo-container:hover { transform: scale(1.08); }
+        .logo-container img { width: 48px; height: 48px; object-fit: contain; filter: brightness(1.4) contrast(1.3); }
+        
+        /* Desktop Nav Links */
+        .nav-link { 
+            color: rgba(255,255,255,0.7); font-weight: 600; font-size: 0.75rem; letter-spacing: 0.1em; 
+            text-transform: uppercase; transition: all 0.3s ease; text-decoration: none; position: relative; 
+        }
+        .nav-link:hover { color: white; }
+        .nav-link::after { 
+            content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px; 
+            background: white; transition: width 0.3s ease; 
+        }
+        .nav-link:hover::after { width: 100%; }
+        
+        /* Social Icons in Navbar */
+        .navbar-social-icon { 
+            width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; 
+            color: white; cursor: pointer; transition: all 0.3s ease; background: transparent; border: none; 
+        }
+        .navbar-social-icon svg { width: 22px; height: 22px; stroke-width: 2.5; stroke: white; fill: none; }
+        .navbar-social-icon:hover { transform: scale(1.1); opacity: 0.8; }
+        
+        /* Primary Button */
+        .btn-primary { 
+            display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 1.5rem; 
+            background: white; color: black; font-family: var(--font-sans); font-weight: 700; 
+            font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; border: none; 
+            border-radius: 12px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); 
+            text-decoration: none; line-height: 1; 
+        }
+        .btn-primary:hover { transform: translateY(-2px); background: white; color: black; }
+        
+        /* Hamburger Menu Button */
+        .hamburger-btn {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 44px;
+            height: 44px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            gap: 6px;
+            z-index: 1001;
+            position: relative;
+        }
+        .hamburger-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: white;
+            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hamburger-btn.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+        .hamburger-btn.active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger-btn.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+        
+        /* Mobile Menu Overlay */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80%;
+            max-width: 320px;
+            height: 100vh;
+            background: rgba(8, 8, 8, 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 999;
+            transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            padding: 100px 28px 40px;
+            display: flex;
+            flex-direction: column;
+            border-left: 1px solid rgba(255,255,255,0.08);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+        }
+        .mobile-menu.open {
+            right: 0;
+        }
+        .mobile-nav-link {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.3s ease;
+            letter-spacing: -0.3px;
+        }
+        .mobile-nav-link:hover {
+            color: white;
+            padding-left: 8px;
+        }
+        .mobile-social {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .mobile-social a {
+            color: rgba(255,255,255,0.6);
+            transition: all 0.3s ease;
+        }
+        .mobile-social a:hover {
+            color: white;
+            transform: scale(1.1);
+        }
+        .mobile-cta {
+            margin-top: 2rem;
+            width: 100%;
+            justify-content: center;
+        }
+        .menu-overlay-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .menu-overlay-bg.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Desktop styles */
+        @media (min-width: 769px) {
+            .navbar {
+                padding: 0.75rem 2rem;
+            }
+            .navbar.scrolled {
+                padding: 0.5rem 2rem;
+            }
+            .logo-container {
+                width: 80px;
+                height: 80px;
+            }
+            .logo-container img {
+                width: 60px;
+                height: 60px;
+            }
+            .btn-primary {
+                padding: 1.1rem 2.2rem;
+                font-size: 0.875rem;
+            }
+        }
+        
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .desktop-nav-links {
+                display: none !important;
+            }
+            .desktop-social-icons {
+                display: none !important;
+            }
+            .hamburger-btn {
+                display: flex;
+            }
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+            .btn-primary {
+                padding: 0.6rem 1.2rem;
+                font-size: 0.7rem;
+                gap: 0.4rem;
+            }
+            .logo-container {
+                width: 52px;
+                height: 52px;
+            }
+            .logo-container img {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .btn-primary {
+                padding: 0.55rem 1rem;
+                font-size: 0.65rem;
+            }
+            .btn-primary svg {
+                width: 14px;
+                height: 14px;
+            }
+            .logo-container {
+                width: 48px;
+                height: 48px;
+            }
+            .logo-container img {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        /* ===== FOOTER SECTION (exact replica from main page) ===== */
+        .footer-section { 
+            position: relative; padding: 5rem 1.5rem 2.5rem; background: #050505; 
+            border-top: 1px solid rgba(255,255,255,0.05); overflow: hidden; 
+            margin-top: auto;
+            z-index: 1;
+        }
+        .footer-content { max-width: 100%; margin: 0 auto; width: 100%; padding: 0 2rem; }
+        .footer-logo { 
+            width: 52px; height: 52px; border-radius: 50%; overflow: hidden; display: flex; 
+            align-items: center; justify-content: center; background: #0a0a0a; flex-shrink: 0; 
+            border: 1px solid rgba(255,255,255,0.1); 
+        }
+        .footer-logo img { width: 72%; height: 72%; object-fit: contain; filter: brightness(1.2) contrast(1.1); }
+        .footer-link { 
+            color: rgba(255,255,255,0.55); text-decoration: none; font-size: 1.1rem; font-weight: 450; 
+            transition: color 0.2s ease; display: inline-flex; align-items: center; gap: 6px; letter-spacing: -0.01em; 
+        }
+        .footer-link:hover { color: #ffffff; }
+        .footer-social-link { 
+            width: 46px; height: 46px; border-radius: 40px; border: 1.5px solid rgba(255,255,255,0.4); 
+            background: transparent; display: inline-flex; align-items: center; justify-content: center; 
+            color: #ffffff; cursor: pointer; transition: all 0.25s cubic-bezier(0.2,0.9,0.4,1.1); 
+            text-decoration: none; backdrop-filter: blur(2px); 
+        }
+        .footer-social-link:hover { background: #ffffff; color: #050505; border-color: #ffffff; transform: scale(1.06); }
+        .footer-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 2rem; margin-bottom: 3rem; }
+        
+        @media (max-width: 1024px) { .footer-grid { gap: 2.5rem; } }
+        @media (max-width: 768px) { 
+            .footer-section { padding: 3rem 1.25rem 2rem; } 
+            .footer-grid { display: flex; flex-direction: column; gap: 2.5rem; } 
+            .footer-social-link { width: 42px; height: 42px; } 
+        }
+        @media (max-width: 480px) { .footer-social-link { width: 38px; height: 38px; } }
+
+        /* ===== CONTACT PAGE SPECIFIC STYLES (preserved from original) ===== */
         .page-container {
             position: relative;
             z-index: 1;
@@ -51,6 +333,7 @@
             align-items: flex-start;
             padding: 2rem 4rem;
             gap: 6rem;
+            margin: 80px auto 0;
         }
         
         /* Left Content Section */
@@ -115,7 +398,7 @@
             max-width: 400px;
         }
         
-        /* Calendar Booking CTA */
+        /* Calendar Booking CTA - NO GLOW */
         .calendar-cta {
             margin-bottom: 2.5rem;
             display: flex;
@@ -127,7 +410,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.8rem;
-            background: linear-gradient(135deg, #ff6b2b, #ff8f5e);
+            background: #ff6b2b;
             color: #ffffff;
             text-decoration: none;
             padding: 1rem 2rem;
@@ -135,19 +418,18 @@
             font-weight: 600;
             font-size: 1.05rem;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(255, 107, 43, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.2);
             letter-spacing: 0.3px;
+            /* No box-shadow glow */
         }
         
         .book-call-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 35px rgba(255, 107, 43, 0.5);
-            background: linear-gradient(135deg, #ff7f45, #ff9f6e);
+            transform: translateY(-2px);
+            background: #e55a1f;
         }
         
         .book-call-btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
         
         .book-call-btn svg {
@@ -157,16 +439,16 @@
         }
         
         .book-call-btn:hover svg {
-            transform: scale(1.1) rotate(5deg);
+            transform: scale(1.05);
         }
         
-        .social-links {
+        .contact-social-links {
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
         }
         
-        .social-link {
+        .contact-social-link {
             display: flex;
             align-items: center;
             gap: 1rem;
@@ -178,12 +460,12 @@
             padding: 0.5rem 0;
         }
         
-        .social-link:hover {
+        .contact-social-link:hover {
             color: #ffffff;
             transform: translateX(8px);
         }
         
-        .social-icon {
+        .social-icon-box {
             width: 50px;
             height: 50px;
             background: rgba(255, 255, 255, 0.1);
@@ -197,14 +479,13 @@
             flex-shrink: 0;
         }
         
-        .social-link:hover .social-icon {
+        .contact-social-link:hover .social-icon-box {
             background: rgba(255, 255, 255, 0.2);
             border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
             transform: scale(1.05);
         }
         
-        .social-icon svg {
+        .social-icon-box svg {
             width: 22px;
             height: 22px;
             stroke: #ffffff;
@@ -267,7 +548,7 @@
             font-size: 0.9rem;
             color: #ffffff;
             font-weight: 400;
-            font-family: 'Inter', sans-serif;
+            font-family: var(--font-sans);
             transition: all 0.3s ease;
             outline: none;
         }
@@ -338,6 +619,7 @@
             }
         }
         
+        /* Submit Button - NO GLOW */
         .submit-btn {
             width: 100%;
             padding: 0.9rem;
@@ -351,14 +633,13 @@
             transition: all 0.3s ease;
             letter-spacing: 0.5px;
             margin-top: 0.5rem;
-            font-family: 'Inter', sans-serif;
-            box-shadow: 0 5px 25px rgba(255, 107, 43, 0.4);
+            font-family: var(--font-sans);
+            /* No box-shadow glow */
         }
         
         .submit-btn:hover {
-            background: #ff7f45;
+            background: #e55a1f;
             transform: translateY(-2px);
-            box-shadow: 0 10px 35px rgba(255, 107, 43, 0.5);
         }
         
         .submit-btn:active {
@@ -388,16 +669,11 @@
         
         /* Mobile Responsive - Below 768px */
         @media (max-width: 768px) {
-            body {
-                padding: 15px;
-                align-items: flex-start;
-                padding-top: 30px;
-            }
-            
             .page-container {
                 flex-direction: column;
                 gap: 2.5rem;
-                padding: 0;
+                padding: 1.5rem;
+                margin-top: 70px;
                 align-items: center;
             }
             
@@ -412,6 +688,7 @@
                 margin-bottom: 2rem;
                 font-size: 0.85rem;
                 padding: 0.5rem 1rem;
+                display: inline-flex;
             }
             
             .heading {
@@ -437,21 +714,21 @@
                 padding: 0.9rem 1.8rem;
             }
             
-            .social-links {
+            .contact-social-links {
                 align-items: center;
                 gap: 1.2rem;
             }
             
-            .social-link {
+            .contact-social-link {
                 font-size: 0.9rem;
             }
             
-            .social-icon {
+            .social-icon-box {
                 width: 45px;
                 height: 45px;
             }
             
-            .social-icon svg {
+            .social-icon-box svg {
                 width: 20px;
                 height: 20px;
             }
@@ -492,12 +769,9 @@
         
         /* Small Mobile Responsive - Below 480px */
         @media (max-width: 480px) {
-            body {
-                padding: 10px;
-                padding-top: 20px;
-            }
-            
             .page-container {
+                padding: 1rem;
+                margin-top: 60px;
                 gap: 2rem;
             }
             
@@ -509,7 +783,6 @@
             .subtitle {
                 font-size: 0.9rem;
                 margin-bottom: 1.8rem;
-                padding: 0 0.5rem;
             }
             
             .calendar-cta {
@@ -537,22 +810,22 @@
                 height: 16px;
             }
             
-            .social-links {
+            .contact-social-links {
                 gap: 1rem;
             }
             
-            .social-link {
+            .contact-social-link {
                 font-size: 0.85rem;
                 gap: 0.8rem;
             }
             
-            .social-icon {
+            .social-icon-box {
                 width: 40px;
                 height: 40px;
                 border-radius: 12px;
             }
             
-            .social-icon svg {
+            .social-icon-box svg {
                 width: 18px;
                 height: 18px;
             }
@@ -615,7 +888,7 @@
                 padding: 0.75rem 1.2rem;
             }
             
-            .social-link {
+            .contact-social-link {
                 font-size: 0.8rem;
             }
             
@@ -636,15 +909,11 @@
         
         /* Landscape Mode */
         @media (max-height: 600px) and (orientation: landscape) {
-            body {
-                align-items: flex-start;
-                padding: 10px;
-            }
-            
             .page-container {
                 flex-direction: row;
                 gap: 2rem;
-                padding: 0;
+                padding: 1rem;
+                margin-top: 70px;
             }
             
             .heading {
@@ -665,16 +934,16 @@
                 padding: 0.7rem 1.3rem;
             }
             
-            .social-links {
+            .contact-social-links {
                 gap: 0.8rem;
             }
             
-            .social-icon {
+            .social-icon-box {
                 width: 35px;
                 height: 35px;
             }
             
-            .social-icon svg {
+            .social-icon-box svg {
                 width: 16px;
                 height: 16px;
             }
@@ -690,12 +959,12 @@
         
         /* Touch Device Optimizations */
         @media (hover: none) and (pointer: coarse) {
-            .social-link:hover,
+            .contact-social-link:hover,
             .book-call-btn:hover {
                 transform: none;
             }
             
-            .social-link:active,
+            .contact-social-link:active,
             .book-call-btn:active {
                 transform: scale(0.98);
             }
@@ -711,32 +980,63 @@
     </style>
 </head>
 <body>
+
+    <!-- ===== MOBILE MENU OVERLAY BACKGROUND ===== -->
+    <div class="menu-overlay-bg" id="menuOverlayBg"></div>
+    
+    <!-- ===== MOBILE SIDE MENU ===== -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="/#solutions" class="mobile-nav-link" data-close-menu>Solutions</a>
+        <a href="/#infinite-performance" class="mobile-nav-link" data-close-menu>Process</a>
+        <a href="/#impact" class="mobile-nav-link" data-close-menu>Impact</a>
+        <a href="/about" class="mobile-nav-link" data-close-menu>About</a>
+        <div class="mobile-social">
+            <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" class="navbar-social-icon" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" class="navbar-social-icon" style="width: 40px; height: 40px;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+        </div>
+        <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" rel="noopener noreferrer" class="btn-primary mobile-cta" style="justify-content: center;">Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
-        <div class="max-w-[1920px] mx-auto px-6 md:px-12 lg:px-20 h-[70px] flex items-center justify-between">
-            <div class="flex items-center gap-8">
+        <div class="w-full max-w-[1920px] mx-auto px-4 md:px-8 lg:px-20 h-[60px] md:h-[70px] flex items-center justify-between">
+            <div class="flex items-center gap-4 md:gap-8">
                 <div class="flex items-center cursor-pointer group logo-container">
                     <img src="https://i.ibb.co/ZRPvQkG9/Chat-GPT-Image-May-11-2026-07-18-19-PM-removebg-preview.png" alt="ELVRT Company Logo" style="mix-blend-mode: screen;">
                 </div>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#solutions" class="nav-link">Solutions</a>
-                    <a href="#infinite-performance" class="nav-link">Process</a>
-                    <a href="#impact" class="nav-link">Impact</a>
+                <div class="hidden md:flex items-center gap-6 lg:gap-8 desktop-nav-links">
+                    <a href="/#solutions" class="nav-link">Solutions</a>
+                    <a href="/#infinite-performance" class="nav-link">Process</a>
+                    <a href="/#impact" class="nav-link">Impact</a>
                     <a href="/about" class="nav-link">About</a>
                 </div>
             </div>
-            <div class="flex items-center gap-5">
-                <div class="hidden md:flex items-center gap-4 mr-2">
-                    <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" class="social-icon" title="LinkedIn" aria-label="Visit our LinkedIn profile">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" role="img" aria-labelledby="linkedin-title"><title id="linkedin-title">LinkedIn Icon</title><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            <div class="flex items-center gap-3 md:gap-5">
+                <div class="hidden md:flex items-center gap-3 mr-1 desktop-social-icons">
+                    <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" class="navbar-social-icon" title="LinkedIn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
                     </a>
-                    <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" class="social-icon" title="Instagram" aria-label="Visit our Instagram profile">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" role="img" aria-labelledby="instagram-title"><title id="instagram-title">Instagram Icon</title><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" class="navbar-social-icon" title="Instagram">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
                     </a>
                 </div>
-                <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" rel="noopener noreferrer" class="btn-primary">Get Started <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" role="img" aria-labelledby="get-started-arrow-title"><title id="get-started-arrow-title">Right Arrow Icon</title><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" rel="noopener noreferrer" class="btn-primary">Get Started <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+                
+                <!-- Hamburger Button (Mobile) -->
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
         </div>
     </nav>
+
+    <!-- ===== CONTACT PAGE CONTENT (preserved from original) ===== -->
     <div class="page-container">
         <!-- Left Content -->
         <div class="content-section">
@@ -752,7 +1052,7 @@
             
             <p class="subtitle">Ready to automate your real estate business? Let's connect.</p>
             
-            <!-- Calendar Booking CTA -->
+            <!-- Calendar Booking CTA - NO GLOW -->
             <div class="calendar-cta">
                 <a href="https://calendly.com/mspoltu07/strategy-call?month=2026-05" target="_blank" class="book-call-btn">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -765,10 +1065,10 @@
                 </a>
             </div>
             
-            <div class="social-links">
+            <div class="contact-social-links">
                 <!-- Email -->
-                <a href="mailto:elvrtrealestatetech@gmail.com" class="social-link">
-                    <div class="social-icon">
+                <a href="mailto:elvrtrealestatetech@gmail.com" class="contact-social-link">
+                    <div class="social-icon-box">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
                             <polyline points="22,6 12,13 2,6"></polyline>
@@ -778,8 +1078,8 @@
                 </a>
                 
                 <!-- LinkedIn -->
-                <a href="https://www.linkedin.com/in/elvrtrealestatetech" target="_blank" class="social-link">
-                    <div class="social-icon">
+                <a href="https://www.linkedin.com/in/elvrtrealestatetech" target="_blank" class="contact-social-link">
+                    <div class="social-icon-box">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                             <rect x="2" y="9" width="4" height="12"></rect>
@@ -790,8 +1090,8 @@
                 </a>
                 
                 <!-- Instagram -->
-                <a href="https://www.instagram.com/elvrt_realestatetech/?hl=en" target="_blank" class="social-link">
-                    <div class="social-icon">
+                <a href="https://www.instagram.com/elvrt_realestatetech/?hl=en" target="_blank" class="contact-social-link">
+                    <div class="social-icon-box">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -838,7 +1138,103 @@
         </div>
     </div>
     
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-grid">
+                <div style="grid-column: span 5 / span 5;">
+                    <div class="flex items-center gap-4 mb-5 flex-wrap">
+                        <div class="footer-logo"><img src="https://i.ibb.co/ZRPvQkG9/Chat-GPT-Image-May-11-2026-07-18-19-PM-removebg-preview.png" alt="ELVRT logo" loading="lazy"></div>
+                        <div>
+                            <h4 class="text-2xl font-display font-semibold text-white tracking-tight leading-tight">ELVRT</h4>
+                            <p class="text-xs font-bold uppercase tracking-[0.3em] text-white/30 mt-1">AI Automation for Real Estate</p>
+                        </div>
+                    </div>
+                    <p class="text-base text-dim leading-relaxed max-w-sm mb-6">Built for real estate professionals who refuse to leave deals on the table.</p>
+                    <div class="flex items-center gap-3">
+                        <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="LinkedIn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </a>
+                        <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" rel="noopener noreferrer" class="footer-social-link" aria-label="Instagram">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div style="grid-column: span 3 / span 3; grid-column-start: 9;">
+                    <h5 class="text-[14px] font-black uppercase tracking-[0.5em] text-white/30 mb-5">Company</h5>
+                    <ul class="space-y-4" style="list-style: none;">
+                        <li><a href="/about" class="footer-link">About</a></li>
+                        <li><a href="/contact" class="footer-link">Contact</a></li>
+                        <li><a href="/careers" class="footer-link">Careers</a></li>
+                    </ul>
+                </div>
+                <div style="grid-column: span 3 / span 3;">
+                    <h5 class="text-[14px] font-black uppercase tracking-[0.5em] text-white/30 mb-5">Legal</h5>
+                    <ul class="space-y-4" style="list-style: none;">
+                        <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="footer-link">Terms and Conditions</a></li>
+                        <li><a href="cookie.html" class="footer-link">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                <p class="text-sm md:text-base text-white/30 tracking-wide">© 2026 ELVRT. All rights reserved.</p>
+                <p class="text-sm md:text-base text-white/20 font-mono tracking-wide">Built for real estate. Backed by AI.</p>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // ===== NAVBAR SCROLL BEHAVIOR =====
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) navbar.classList.add('scrolled');
+            else navbar.classList.remove('scrolled');
+        });
+
+        // ===== HAMBURGER MENU TOGGLE =====
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuOverlayBg = document.getElementById('menuOverlayBg');
+        
+        function closeMenu() {
+            hamburgerBtn.classList.remove('active');
+            mobileMenu.classList.remove('open');
+            menuOverlayBg.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        
+        function openMenu() {
+            hamburgerBtn.classList.add('active');
+            mobileMenu.classList.add('open');
+            menuOverlayBg.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        hamburgerBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (mobileMenu.classList.contains('open')) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        
+        menuOverlayBg.addEventListener('click', closeMenu);
+        
+        // Close menu when clicking any menu link with data-close-menu attribute
+        document.querySelectorAll('[data-close-menu]').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+        
+        // Close on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+                closeMenu();
+            }
+        });
+        
+        // ===== FORM VALIDATION (preserved from original) =====
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -867,7 +1263,6 @@
             }
             
             if (isValid) {
-                // If valid, submit the form to Netlify
                 this.submit();
             }
         });
@@ -886,50 +1281,23 @@
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             return emailRegex.test(email);
         }
+        
+        // ===== FIX FOOTER LINKS (prevent default for placeholder # links) =====
+        const allPlaceholderLinks = document.querySelectorAll('.footer-link[href="#"]');
+        allPlaceholderLinks.forEach(link => {
+            link.addEventListener('click', (e) => { e.preventDefault(); });
+        });
+
+        // Initialize Lucide icons
+        if (typeof lucide !== 'undefined' && lucide.createIcons) {
+            lucide.createIcons();
+        }
+        
+        // Prevent body scroll when menu is open on touch devices
+        const menuLinks = mobileMenu.querySelectorAll('a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
     </script>
-    <footer class="footer-section">
-        <div class="footer-content">
-            <div class="footer-grid">
-                <div style="grid-column: span 5 / span 5;">
-                    <div class="flex items-center gap-4 mb-5 flex-wrap">
-                        <div class="footer-logo"><img src="https://i.ibb.co/ZRPvQkG9/Chat-GPT-Image-May-11-2026-07-18-19-PM-removebg-preview.png" alt="ELVRT logo" loading="lazy"></div>
-                        <div>
-                            <h4 class="text-2xl font-display font-semibold text-white tracking-tight leading-tight">ELVRT</h4>
-                            <p class="text-xs font-bold uppercase tracking-[0.3em] text-white/30 mt-1">AI Automation for Real Estate</p>
-                        </div>
-                    </div>
-                    <p class="text-base text-dim leading-relaxed max-w-sm mb-6">Built for real estate professionals who refuse to leave deals on the table.</p>
-                    <div class="flex items-center gap-3">
-                        <a href="https://www.linkedin.com/in/ahnaf-jawad-elvrt/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="footer-linkedin-title"><title id="footer-linkedin-title">LinkedIn Icon</title><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                        </a>
-                        <a href="https://www.instagram.com/elvrt_realestatetech/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-labelledby="footer-instagram-title"><title id="footer-instagram-title">Instagram Icon</title><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-                        </a>
-                    </div>
-                </div>
-                <div style="grid-column: span 3 / span 3; grid-column-start: 9;">
-                    <h5 class="text-[14px] font-black uppercase tracking-[0.5em] text-white/30 mb-5">Company</h5>
-                    <ul class="space-y-4" style="list-style: none;">
-                        <li><a href="/about" class="footer-link">About</a></li>
-                        <li><a href="/contact" class="footer-link">Contact</a></li>
-                        <li><a href="/careers" class="footer-link">Careers</a></li>
-                    </ul>
-                </div>
-                <div style="grid-column: span 3 / span 3;">
-                    <h5 class="text-[14px] font-black uppercase tracking-[0.5em] text-white/30 mb-5">Legal</h5>
-                    <ul class="space-y-4" style="list-style: none;">
-                        <li><a href="privacy.html" class="footer-link">Privacy Policy</a></li>
-                        <li><a href="terms.html" class="footer-link">Terms and Conditions</a></li>
-                        <li><a href="cookie.html" class="footer-link">Cookie Policy</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
-                <p class="text-sm md:text-base text-white/30 tracking-wide">© 2026 ELVRT. All rights reserved.</p>
-                <p class="text-sm md:text-base text-white/20 font-mono tracking-wide">Built for real estate. Backed by AI.</p>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
