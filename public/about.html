@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | ELVRT Real Estate Tech</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #050505;
+            color: #e0e0e0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Darker Background Image */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://i.ibb.co.com/zhyq7tXr/2151917176.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            opacity: 0.4;
+            z-index: 0;
+            filter: brightness(0.7);
+        }
+
+        /* Page Container — Full Width */
+        .page-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 100%;
+            padding: 4rem 6rem;
+        }
+
+        /* Clean content card */
+        .content-card {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 5rem 6rem;
+            width: 100%;
+        }
+
+        /* Section Styles */
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-label {
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff6b2b;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-headline {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 700;
+            color: #f5f5f5;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            margin-bottom: 1.2rem;
+            max-width: 700px;
+        }
+
+        .section-body {
+            font-size: 1.1rem;
+            color: #aaa;
+            font-weight: 350;
+            line-height: 1.8;
+            max-width: 650px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 2rem;
+            margin-bottom: 3.5rem;
+        }
+
+        .hero .section-headline {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            max-width: 800px;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero .section-subtext {
+            font-size: 1.2rem;
+            color: #bbb;
+            font-weight: 350;
+            line-height: 1.7;
+            max-width: 600px;
+        }
+
+        /* Divider */
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 0 0 5rem 0;
+        }
+
+        /* Two-column layout on desktop */
+        @media (min-width: 900px) {
+            .section-row {
+                display: grid;
+                grid-template-columns: 180px 1fr;
+                gap: 3rem;
+                align-items: start;
+            }
+            
+            .section-label {
+                margin-bottom: 0;
+                padding-top: 0.5rem;
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 3.5rem 3rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .cta-section .section-headline {
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            margin-bottom: 2rem;
+            max-width: 100%;
+        }
+
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: #ff6b2b;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-btn:hover {
+            background: #e55a1f;
+            transform: translateY(-2px);
+        }
+
+        .cta-btn:active {
+            transform: translateY(0);
+        }
+
+        .cta-btn svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .cta-btn:hover svg {
+            transform: translateX(3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .page-container {
+                padding: 3rem 3rem;
+            }
+            
+            .content-card {
+                padding: 4rem 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .content-card {
+                padding: 2.5rem 1.8rem;
+                border-radius: 18px;
+            }
+            
+            .hero {
+                padding-top: 1rem;
+                margin-bottom: 2.5rem;
+            }
+            
+            .hero .section-headline {
+                font-size: 2.2rem;
+            }
+            
+            .hero .section-subtext {
+                font-size: 1.05rem;
+            }
+            
+            .section {
+                margin-bottom: 3rem;
+            }
+            
+            .section-label {
+                font-size: 0.9rem;
+            }
+            
+            .section-headline {
+                font-size: 1.8rem;
+            }
+            
+            .section-body {
+                font-size: 1rem;
+            }
+            
+            .divider {
+                margin-bottom: 3rem;
+            }
+            
+            .cta-section {
+                padding: 2.5rem 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-container {
+                padding: 1.5rem 1rem;
+            }
+            
+            .content-card {
+                padding: 2rem 1.2rem;
+                border-radius: 14px;
+            }
+            
+            .hero {
+                padding-top: 0.5rem;
+                margin-bottom: 2rem;
+            }
+            
+            .hero .section-headline {
+                font-size: 1.9rem;
+            }
+            
+            .hero .section-subtext {
+                font-size: 0.95rem;
+            }
+            
+            .section {
+                margin-bottom: 2.5rem;
+            }
+            
+            .section-label {
+                font-size: 0.85rem;
+            }
+            
+            .section-headline {
+                font-size: 1.6rem;
+                letter-spacing: -0.5px;
+            }
+            
+            .section-body {
+                font-size: 0.95rem;
+            }
+            
+            .divider {
+                margin-bottom: 2.5rem;
+            }
+            
+            .cta-section {
+                padding: 2rem 1.2rem;
+            }
+            
+            .cta-section .section-headline {
+                font-size: 1.5rem;
+            }
+            
+            .cta-btn {
+                padding: 0.85rem 2rem;
+                font-size: 0.95rem;
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .page-container {
+                padding: 1rem 0.5rem;
+            }
+            
+            .content-card {
+                padding: 1.5rem 1rem;
+                border-radius: 12px;
+            }
+            
+            .hero .section-headline {
+                font-size: 1.7rem;
+            }
+            
+            .section-label {
+                font-size: 0.8rem;
+            }
+            
+            .section-headline {
+                font-size: 1.4rem;
+            }
+            
+            .section {
+                margin-bottom: 2rem;
+            }
+            
+            .divider {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .cta-btn:hover {
+                transform: none;
+            }
+            
+            .cta-btn:active {
+                transform: scale(0.97);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page Content — Full Width -->
+    <div class="page-container">
+        <div class="content-card">
+            <!-- SECTION 1 — Hero -->
+            <section class="hero">
+                <h1 class="section-headline">We're Not Here to Play It Safe</h1>
+                <p class="section-subtext">ELVRT was built with one obsession — make real estate agents unstoppable.</p>
+            </section>
+            
+            <div class="divider"></div>
+            
+            <!-- SECTION 2 — The Problem -->
+            <section class="section">
+                <div class="section-row">
+                    <p class="section-label">The Problem</p>
+                    <div>
+                        <h2 class="section-headline">The Industry Was Broken</h2>
+                        <p class="section-body">Real estate agents were spending hours chasing leads that never converted. Missing follow-ups. Losing deals to faster competitors. Working harder every month — but not earning more. Something had to change.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 3 — The Mission -->
+            <section class="section">
+                <div class="section-row">
+                    <p class="section-label">Our Mission</p>
+                    <div>
+                        <h2 class="section-headline">Our Mission</h2>
+                        <p class="section-body">To give every real estate agent an unfair advantage — through AI that qualifies leads, nurtures relationships, and fills calendars automatically. So agents can do what they do best: close deals.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 4 — The Vision -->
+            <section class="section">
+                <div class="section-row">
+                    <p class="section-label">The Vision</p>
+                    <div>
+                        <h2 class="section-headline">Where We're Going</h2>
+                        <p class="section-body">A future where no deal is lost to slow response times. No lead is forgotten. No opportunity is missed. ELVRT is building the infrastructure that makes that future possible — today.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- SECTION 5 — CTA -->
+            <section class="cta-section">
+                <h2 class="section-headline">Ready to Work Smarter?</h2>
+                <a href="https://calendly.com/mspoltu07/strategy-call" target="_blank" class="cta-btn">
+                    Book a Strategy Call
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </a>
+            </section>
+        </div>
+    </div>
+</body>
+</html>
