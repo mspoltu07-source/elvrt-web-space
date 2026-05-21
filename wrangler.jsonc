@@ -6,18 +6,10 @@
     "enabled": true
   },
   "assets": {
-    "directory": ".",
+    "directory": "./public",
     "html_handling": "drop",
-    "not_found_handling": {
-      "custom_404_page": "404.html"
-    }
+    "not_found_handling": "404-page"
   },
-  "routes": [
-    {
-      "pattern": "/careers",
-      "entrypoint": "careers.html"
-    }
-  ],
   "compatibility_flags": [
     "nodejs_compat"
   ]
