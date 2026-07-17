@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brokerage Lead Automation Platform</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (Play CDN for static usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Standard Vanilla CSS Styles from HomeView.tsx -->
+    <style>
+        /* Base styles matching HomeView */
+        body {
+            background-color: #000000 !important;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Ambient glows and gradients */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.15;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Glassmorphism cards */
+        .glass-card {
+            background: rgba(18, 19, 22, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            background: rgba(22, 23, 27, 0.55);
+        }
+
+        /* Highlight border effects */
+        .highlight-border {
+            position: relative;
+        }
+        .highlight-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Interactive active state styles */
+        .interactive-tab {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Custom buttons styling */
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(255, 255, 255, 0.25);
+            background: #f3f4f6;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+
+        /* CTA SECTION background with Waveform image styling */
+        .cta-section { 
+            position: relative; 
+            padding: 8rem 1.5rem; 
+            background-image: url('https://i.ibb.co/4wg8DgCB/Waveform-1-1366x628.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
+            background-attachment: fixed; 
+            isolation: isolate; 
+            overflow: hidden; 
+        }
+        .cta-section::before { 
+            content: ''; 
+            position: absolute; 
+            inset: 0; 
+            background: rgba(9, 10, 15, 0.85); 
+            z-index: 1; 
+            pointer-events: none; 
+        }
+
+        /* Custom inputs matching the visual design */
+        .custom-input {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .custom-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased min-h-screen flex flex-col">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="font-bold text-xl tracking-tight text-white flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                    VELOCITY
+                </span>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="index.html" class="text-white hover:text-white transition-colors">Home</a>
+                <a href="about.html" class="hover:text-white transition-colors">About</a>
+                <a href="careers.html" class="hover:text-white transition-colors">Careers</a>
+                <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <!-- Action Button -->
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="btn-primary text-xs md:text-sm px-5 py-2.5 rounded-full">
+                    Book a Demo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="flex-grow pt-20">
+        
+        <!-- HERO SECTION -->
+        <section class="relative min-h-[90vh] flex flex-col justify-center items-center text-center px-6 overflow-hidden py-20">
+            <!-- Decorative Glow Orbs -->
+            <div class="glow-orb w-[400px] h-[400px] bg-white top-20 left-1/4"></div>
+            <div class="glow-orb w-[300px] h-[300px] bg-gray-500 bottom-10 right-1/4"></div>
+
+            <div class="relative z-10 max-w-4xl mx-auto flex flex-col items-center">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 text-xs text-gray-300 mb-8 tracking-wide">
+                    <span class="w-1.5 h-1.5 rounded-full bg-white"></span>
+                    Next-Gen Real Estate Lead Routing
+                </div>
+
+                <!-- Main Heading -->
+                <h1 class="text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.05] mb-8">
+                    Close Fast. <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">Scale Fast.</span>
+                </h1>
+
+                <!-- Subtext -->
+                <p class="text-lg md:text-xl text-gray-400 font-light max-w-2xl mb-12 leading-relaxed">
+                    Automate lead capturing, optimize routing paths instantly, and empower your brokerage agents with real-time conversion pipelines.
+                </p>
+
+                <!-- Action Buttons -->
+                <div class="flex flex-col sm:flex-row gap-4 items-center justify-center">
+                    <a href="contact.html" class="btn-primary text-sm px-8 py-4 rounded-full w-full sm:w-auto text-center">
+                        Secure Free Pilot Access
+                    </a>
+                    <a href="#features" class="btn-secondary text-sm px-8 py-4 rounded-full w-full sm:w-auto text-center">
+                        Explore Platform Features
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- STATS SECTION -->
+        <section class="py-20 border-t border-b border-white/5 bg-white/[0.01]">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">99.8%</div>
+                        <div class="text-sm text-gray-400">Route Reliability</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">&lt; 15s</div>
+                        <div class="text-sm text-gray-400">Average Lead Routing Time</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">4.2x</div>
+                        <div class="text-sm text-gray-400">Agent Conversion Increase</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl md:text-5xl font-bold text-white mb-2">12M+</div>
+                        <div class="text-sm text-gray-400">Routed Leads Handled</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURES SECTION -->
+        <section id="features" class="py-32 px-6 relative">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Engineered for High-Velocity Teams</h2>
+                    <p class="text-gray-400 font-light">Everything you need to capture, score, distribute, and track leads automatically.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Feature 1 -->
+                    <div class="glass-card highlight-border p-8 rounded-2xl flex flex-col justify-between h-[300px]">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 mb-6">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Lightning Distribution</h3>
+                            <p class="text-sm text-gray-400 leading-relaxed font-light">Distribute high-intent buyer and seller inquiries to available matching agents in under 15 seconds.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="glass-card highlight-border p-8 rounded-2xl flex flex-col justify-between h-[300px]">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 mb-6">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">AI Lead Scoring</h3>
+                            <p class="text-sm text-gray-400 leading-relaxed font-light">Grade and enrich inbound profiles to make sure your gold-standard leads go straight to premium agents.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="glass-card highlight-border p-8 rounded-2xl flex flex-col justify-between h-[300px]">
+                        <div>
+                            <div class="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 mb-6">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                            </div>
+                            <h3 class="text-xl font-semibold mb-3">Conversion Analytics</h3>
+                            <p class="text-sm text-gray-400 leading-relaxed font-light">Trace lead progress dynamically from capture to close with customized, deep-funnel reporting.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRICING SECTION -->
+        <section class="py-32 bg-white/[0.01] border-t border-b border-white/5 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-20">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Pricing Built to Scale Your Brokerage</h2>
+                    <p class="text-gray-400 font-light">
+                        Transparent pricing to automate your lead flow. Ask about our pilot program to secure instant setup savings.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    <!-- Standard Tier -->
+                    <div class="glass-card highlight-border p-8 rounded-3xl flex flex-col justify-between h-[450px]">
+                        <div>
+                            <h3 class="text-xl font-semibold mb-2 text-gray-300">Starter Pilot</h3>
+                            <div class="flex items-baseline gap-1 mb-6">
+                                <span class="text-4xl font-bold text-white">$499</span>
+                                <span class="text-sm text-gray-400">/mo</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-gray-400 mb-8">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Up to 500 Leads / month</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Round Robin Lead Distribution</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Custom CRM Integration</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Email/SMS Notifications</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn-secondary w-full text-center py-3.5 rounded-xl text-sm">Secure Starter Access</a>
+                    </div>
+
+                    <!-- Enterprise Tier -->
+                    <div class="glass-card highlight-border p-8 rounded-3xl border-white/20 bg-white/[0.03] flex flex-col justify-between h-[450px]">
+                        <div>
+                            <span class="inline-block bg-white text-black font-semibold text-[10px] px-2.5 py-1 rounded-full mb-4 tracking-wider uppercase">Most Popular</span>
+                            <h3 class="text-xl font-semibold mb-2 text-white">Scale Accelerator</h3>
+                            <div class="flex items-baseline gap-1 mb-6">
+                                <span class="text-4xl font-bold text-white">$1,199</span>
+                                <span class="text-sm text-gray-400">/mo</span>
+                            </div>
+                            <ul class="space-y-3 text-sm text-gray-400 mb-8">
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Unlimited Leads / month</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Real-time AI Intent Routing</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Custom SLA and Direct Support</li>
+                                <li class="flex items-center gap-2"><svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg> Complete Performance Dashboard</li>
+                            </ul>
+                        </div>
+                        <a href="contact.html" class="btn-primary w-full text-center py-3.5 rounded-xl text-sm">Apply for High-Volume Pilot</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA SECTION WITH THE FINAL WAVEFORM BACKGROUND -->
+        <section class="cta-section flex flex-col items-center justify-center text-center py-32 md:py-40 px-6">
+            <div class="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center">
+                <h2 class="text-4xl md:text-5xl lg:text-[56px] font-semibold text-white mb-6 leading-[1.1] tracking-[-0.02em]">
+                    Close Fast, Scale Fast.
+                </h2>
+                <p class="text-[#8696a1] text-base md:text-lg max-w-xl mb-12 font-light leading-relaxed">
+                    Capture, distribute, and track your high-intent leads dynamically. Launch your custom routing platform in less than 24 hours.
+                </p>
+                <a href="contact.html" class="btn-primary px-8 py-4 rounded-full text-sm inline-block">
+                    Begin Your 30-Day Pilot
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/5 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-sm">
+            <!-- Brand -->
+            <div>
+                <span class="font-bold text-white tracking-tight text-base mb-4 block">VELOCITY</span>
+                <p class="text-gray-400 font-light leading-relaxed">Supercharging brokerage lead conversions globally with next-generation algorithmic routing paths.</p>
+            </div>
+            <!-- Links -->
+            <div>
+                <h4 class="font-semibold text-white mb-4">Platform</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Team</a></li>
+                    <li><a href="careers.html" class="hover:text-white transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <!-- Resources -->
+            <div>
+                <h4 class="font-semibold text-white mb-4">Contact</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Book Demo</a></li>
+                    <li><a href="mailto:support@velocity.com" class="hover:text-white transition-colors">support@velocity.com</a></li>
+                </ul>
+            </div>
+            <!-- Legal -->
+            <div>
+                <h4 class="font-semibold text-white mb-4">Legal</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    <li><a href="cookie.html" class="hover:text-white transition-colors">Cookie Settings</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-light">
+            <p>&copy; 2026 VELOCITY. All rights reserved.</p>
+            <p>Made for high-performance brokers globally.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

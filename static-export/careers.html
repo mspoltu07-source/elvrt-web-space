@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - VELOCITY</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (Play CDN for static usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Standard Vanilla CSS Styles from HomeView.tsx -->
+    <style>
+        body {
+            background-color: #000000 !important;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(140px);
+            opacity: 0.12;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: rgba(18, 19, 22, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+            background: rgba(22, 23, 27, 0.55);
+        }
+
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 20px rgba(255, 255, 255, 0.15);
+        }
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 24px rgba(255, 255, 255, 0.25);
+            background: #f3f4f6;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased min-h-screen flex flex-col">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="font-bold text-xl tracking-tight text-white flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                    VELOCITY
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <a href="about.html" class="hover:text-white transition-colors">About</a>
+                <a href="careers.html" class="text-white hover:text-white transition-colors">Careers</a>
+                <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="btn-primary text-xs md:text-sm px-5 py-2.5 rounded-full">
+                    Book a Demo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="flex-grow pt-32 pb-24 px-6 relative">
+        <div class="glow-orb w-[400px] h-[400px] bg-white top-20 right-1/4"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10">
+            <!-- Breadcrumb -->
+            <div class="text-xs text-gray-500 mb-4 tracking-wide uppercase">Join Us</div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Build the pipeline engine of real estate.</h1>
+            <p class="text-lg text-gray-400 font-light mb-16 leading-relaxed">
+                We are a remote-first group of builders obsessed with system performance, routing design patterns, and absolute reliability. Help us change how high-volume brokerage networks connect on a global scale.
+            </p>
+
+            <!-- Job Listings -->
+            <div class="space-y-6">
+                <h2 class="text-2xl font-bold mb-8 text-white">Open Roles</h2>
+
+                <!-- Role 1 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div>
+                        <span class="inline-block bg-white/5 border border-white/10 text-xs text-gray-400 px-3 py-1 rounded-full mb-3">Engineering</span>
+                        <h3 class="text-xl font-semibold mb-2">Lead Systems Architect</h3>
+                        <p class="text-sm text-gray-500 font-light">Remote (Americas/Europe) &bull; Full-time</p>
+                    </div>
+                    <a href="mailto:careers@velocity.com?subject=Application:%20Lead%20Systems%20Architect" class="btn-secondary px-6 py-3 rounded-xl text-sm w-full md:w-auto text-center">Apply Now</a>
+                </div>
+
+                <!-- Role 2 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div>
+                        <span class="inline-block bg-white/5 border border-white/10 text-xs text-gray-400 px-3 py-1 rounded-full mb-3">Product</span>
+                        <h3 class="text-xl font-semibold mb-2">Senior Product Designer</h3>
+                        <p class="text-sm text-gray-500 font-light">Remote &bull; Full-time</p>
+                    </div>
+                    <a href="mailto:careers@velocity.com?subject=Application:%20Senior%20Product%20Designer" class="btn-secondary px-6 py-3 rounded-xl text-sm w-full md:w-auto text-center">Apply Now</a>
+                </div>
+
+                <!-- Role 3 -->
+                <div class="glass-card p-8 rounded-2xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div>
+                        <span class="inline-block bg-white/5 border border-white/10 text-xs text-gray-400 px-3 py-1 rounded-full mb-3">Marketing</span>
+                        <h3 class="text-xl font-semibold mb-2">Growth & Acquisition Manager</h3>
+                        <p class="text-sm text-gray-500 font-light">Remote &bull; Full-time</p>
+                    </div>
+                    <a href="mailto:careers@velocity.com?subject=Application:%20Growth%20Manager" class="btn-secondary px-6 py-3 rounded-xl text-sm w-full md:w-auto text-center">Apply Now</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/5 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-sm">
+            <div>
+                <span class="font-bold text-white tracking-tight text-base mb-4 block">VELOCITY</span>
+                <p class="text-gray-400 font-light leading-relaxed">Supercharging brokerage lead conversions globally with next-generation algorithmic routing paths.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Platform</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Team</a></li>
+                    <li><a href="careers.html" class="hover:text-white transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Contact</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Book Demo</a></li>
+                    <li><a href="mailto:support@velocity.com" class="hover:text-white transition-colors">support@velocity.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Legal</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    <li><a href="cookie.html" class="hover:text-white transition-colors">Cookie Settings</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-light">
+            <p>&copy; 2026 VELOCITY. All rights reserved.</p>
+            <p>Made for high-performance brokers globally.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

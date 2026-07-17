@@ -1,0 +1,6 @@
+{
+  "name": "Website Customizer Workspace",
+  "description": "A workspace to reconstruct, customize, and refine your website pages and sections using reference HTML and design screenshots.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

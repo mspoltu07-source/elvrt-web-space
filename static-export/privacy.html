@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - VELOCITY</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS (Play CDN for static usage) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #000000 !important;
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+        .btn-primary {
+            background: #ffffff;
+            color: #000000;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .btn-primary:hover {
+            background: #f3f4f6;
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased min-h-screen flex flex-col">
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/60 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <span class="font-bold text-xl tracking-tight text-white flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+                    VELOCITY
+                </span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+                <a href="index.html" class="hover:text-white transition-colors">Home</a>
+                <a href="about.html" class="hover:text-white transition-colors">About</a>
+                <a href="careers.html" class="hover:text-white transition-colors">Careers</a>
+                <a href="contact.html" class="hover:text-white transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="contact.html" class="btn-primary text-xs md:text-sm px-5 py-2.5 rounded-full">
+                    Book a Demo
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="flex-grow pt-32 pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="text-4xl font-bold mb-4">Privacy Policy</h1>
+            <p class="text-xs text-gray-500 mb-10">Last Updated: July 17, 2026</p>
+            
+            <div class="prose prose-invert text-gray-400 font-light space-y-6 text-sm leading-relaxed">
+                <p>
+                    Velocity ("we", "our", or "us") is dedicated to protecting your privacy and ensuring the security of your business and personal data. This Privacy Policy details how we collect, store, share, and protect your information when you interact with our real estate lead routing platform, our website, and any related services.
+                </p>
+
+                <h2 class="text-lg font-semibold text-white pt-4">1. Information We Collect</h2>
+                <p>
+                    We collect direct information that you provide to us, such as your name, business email, phone number, brokerage details, CRM software preference, and monthly lead volumes when you schedule a demo or sign up for a pilot program. We also process transient end-user lead details (such as names, inquiry types, and contact info) that are routed through our platform on behalf of your brokerage.
+                </p>
+
+                <h2 class="text-lg font-semibold text-white pt-4">2. How We Use Information</h2>
+                <p>
+                    We use the collected information exclusively to provision your custom environment, optimize lightning lead routing paths, secure system integrations, provide analytical metrics, and deliver customer support. We do not sell or lease your brokerage data or lead information to third parties.
+                </p>
+
+                <h2 class="text-lg font-semibold text-white pt-4">3. Data Security and Standards</h2>
+                <p>
+                    We implement industry-standard administrative, physical, and technological security controls, including complete end-to-end encryption (SSL/TLS) for data in transit and at rest, to safeguard your data from unauthorized access, loss, or disclosure.
+                </p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-black border-t border-white/5 py-16 px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 mb-12 text-sm">
+            <div>
+                <span class="font-bold text-white tracking-tight text-base mb-4 block">VELOCITY</span>
+                <p class="text-gray-400 font-light leading-relaxed">Supercharging brokerage lead conversions globally with next-generation algorithmic routing paths.</p>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Platform</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                    <li><a href="about.html" class="hover:text-white transition-colors">About Team</a></li>
+                    <li><a href="careers.html" class="hover:text-white transition-colors">Careers</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Contact</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="contact.html" class="hover:text-white transition-colors">Book Demo</a></li>
+                    <li><a href="mailto:support@velocity.com" class="hover:text-white transition-colors">support@velocity.com</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white mb-4">Legal</h4>
+                <ul class="space-y-2 text-gray-400 font-light">
+                    <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                    <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
+                    <li><a href="cookie.html" class="hover:text-white transition-colors">Cookie Settings</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 font-light">
+            <p>&copy; 2026 VELOCITY. All rights reserved.</p>
+            <p>Made for high-performance brokers globally.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
