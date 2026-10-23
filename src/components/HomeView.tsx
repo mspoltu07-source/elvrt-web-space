@@ -2446,16 +2446,16 @@ export default function HomeView() {
             {/* Card 1: Speed-to-Lead */}
             <div className="flex flex-col bg-gradient-to-b from-white/[0.02] to-white/[0.005] backdrop-blur-xl border border-white/[0.05] rounded-[24px] p-8 md:p-9 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-white/[0.12] hover:translate-y-[-6px] hover:shadow-[0_32px_64px_rgba(0,0,0,0.8)] relative group">
               <div className="mb-6 text-left">
-                <h3 className="text-xl font-sans font-semibold text-white mb-3">Speed-to-Lead</h3>
+                <h3 className="text-xl font-sans font-semibold text-white mb-3">Website Bot</h3>
                 <div className="flex items-baseline mb-1">
-                  <span className="text-[44px] font-sans font-bold text-white tracking-tight">$99</span>
+                  <span className="text-[44px] font-sans font-bold text-white tracking-tight">$149149</span>
                   <span className="text-[#8696a1] ml-2 text-sm font-light">/ month</span>
                 </div>
                 <div className="text-[13px] text-white/90 font-bold mb-6">
-                  + $149 setup fee (Beta Price - Was $500)
+                  + $299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299 setup fee (Beta Price - Was $600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600)
                 </div>
                 <p className="text-[14px] text-neutral-200 font-light min-h-[44px]">
-                  For solo agents stopping internet lead leakage.
+                  For agents whowho wantwant 24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AI on theirtheirtheirtheirtheirtheir website.
                 </p>
               </div>
 
@@ -2467,7 +2467,7 @@ export default function HomeView() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center bg-white/[0.03] hover:bg-white/[0.07] text-white border border-white/[0.08] hover:border-white/[0.18] rounded-xl py-3.5 px-4 text-[13px] font-semibold transition-all duration-300 shadow-none"
                 >
-                  Start Lite
+                  GetGet WebsiteBotWebsiteBot
                 </a>
               </div>
 
@@ -2482,15 +2482,20 @@ export default function HomeView() {
               <ul className="space-y-4 flex-1 flex flex-col justify-start">
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">Instant Social Media Response</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">AI Lead Classification</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">Lead Capture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM Sync</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">Direct CRM Auto-Sync</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">PropertyPropertyPropertyPropertyPropertyProperty ShowcasingShowcasingShowcasingShowcasingShowcasingShowcasing in Chatin Chatin Chatin Chatin Chatin Chat</span>
                 </li>
               </ul>
             </div>
@@ -2509,7 +2514,7 @@ export default function HomeView() {
               </div>
 
               <div className="mb-6 text-left">
-                <h3 className="text-xl font-sans font-semibold text-white mb-3">Autopilot Nurture</h3>
+                <h3 className="text-xl font-sans font-semibold text-white mb-3">WebsiteWebsite BotSocials</h3>
                 <div className="flex items-baseline mb-1">
                   <span className="text-[44px] font-sans font-bold text-white tracking-tight">$248</span>
                   <span className="text-[#8696a1] ml-2 text-sm font-light">/ month</span>
@@ -2518,7 +2523,7 @@ export default function HomeView() {
                   + $499 setup fee (Beta Price - Was $1,500)
                 </div>
                 <p className="text-[14px] text-neutral-200 font-light min-h-[44px]">
-                  Replace a full-time ISA. Fully automated follow-ups.
+                  WebsiteWebsite bot plus full socialsocial mediamedia automationautomation.
                 </p>
               </div>
 
@@ -2530,7 +2535,14 @@ export default function HomeView() {
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#f25c38] to-[#ff734d] hover:brightness-110 text-white font-semibold rounded-xl py-3.5 px-4 text-[13px] transition-all duration-300 shadow-none border-0"
                 >
-                  Automate My Follow-Ups
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
                 </a>
               </div>
 
@@ -2545,7 +2557,7 @@ export default function HomeView() {
               <ul className="space-y-4 flex-1 flex flex-col justify-start">
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-200 font-medium text-left">Everything in Speed-to-Lead</span>
+                  <span className="text-sm text-neutral-200 font-medium text-left">Everything in Website Bot</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
@@ -2553,7 +2565,7 @@ export default function HomeView() {
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">24/7 AI Website Support Bot</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">InstagramInstagram &amp; FacebookFacebook DMDM AutomationAutomation</span>
                 </li>
               </ul>
             </div>
@@ -2596,7 +2608,7 @@ export default function HomeView() {
               <ul className="space-y-4 flex-1 flex flex-col justify-start">
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-200 font-medium text-left">Everything in Autopilot Nurture</span>
+                  <span className="text-sm text-neutral-200 font-medium text-left">Everything in WebsiteWebsite Bot + Socials</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
@@ -2700,4 +2712,6 @@ function ScaleFasterAnimation() {
       </div>
     </div>
   );
+}
+ );
 }
