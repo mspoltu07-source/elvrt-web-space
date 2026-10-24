@@ -2509,7 +2509,7 @@ export default function HomeView() {
               </div>
 
               <div className="mb-6 text-left">
-                <h3 className="text-xl font-sans font-semibold text-white mb-3">WebsiteWebsite BotSocials</h3>
+                <h3 className="text-xl font-sans font-semibold text-white mb-3">Website Bot + Socials</h3>
                 <div className="flex items-baseline mb-1">
                   <span className="text-[44px] font-sans font-bold text-white tracking-tight">$248</span>
                   <span className="text-[#8696a1] ml-2 text-sm font-light">/ month</span>
@@ -2603,7 +2603,7 @@ export default function HomeView() {
               <ul className="space-y-4 flex-1 flex flex-col justify-start">
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-200 font-medium text-left">Everything in WebsiteWebsite Bot + Socials</span>
+                  <span className="text-sm text-neutral-200 font-medium text-left">Everything in Website Bot + Socials</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
