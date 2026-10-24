@@ -1,25 +1,25 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { 
-  Linkedin, 
-  Instagram as InstagramIcon, 
-  ArrowRight, 
-  Filter, 
-  RefreshCw, 
-  Database, 
-  MessageCircle, 
-  Home, 
-  Zap, 
-  X, 
-  ChevronLeft, 
-  ChevronRight, 
-  Phone, 
-  Video, 
-  MoreVertical, 
-  Smile, 
-  Paperclip, 
-  Mic, 
-  Info, 
+import {
+  Linkedin,
+  Instagram as InstagramIcon,
+  ArrowRight,
+  Filter,
+  RefreshCw,
+  Database,
+  MessageCircle,
+  Home,
+  Zap,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  Phone,
+  Video,
+  MoreVertical,
+  Smile,
+  Paperclip,
+  Mic,
+  Info,
   Plus,
   Shield,
   Settings,
@@ -88,7 +88,7 @@ function BentoStopwatch() {
   return (
     <div className="relative w-full flex flex-col items-center justify-center pt-4 md:pt-8 pb-2 md:pb-4 bg-transparent overflow-hidden">
       {/* High-end background ambient glow behind the massive typography */}
-      <div 
+      <div
         className="absolute bottom-[-50px] w-[260px] h-[180px] rounded-full pointer-events-none opacity-25 transition-all duration-1000"
         style={{
           background: statType === "speed"
@@ -97,7 +97,7 @@ function BentoStopwatch() {
           filter: "blur(40px)"
         }}
       />
-      
+
       <div className="relative z-10 flex flex-col items-center justify-center text-center w-full">
         {/* Massive definitive stat with smooth crossfade and tracking-tighter layout */}
         <div className="h-[60px] md:h-[120px] flex items-center justify-center overflow-visible">
@@ -134,75 +134,75 @@ function BentoStopwatch() {
 
 function BentoCRMCarousel() {
   const crms = [
-    { 
-      name: "HubSpot", 
-      logo: "https://i.ibb.co.com/NdzjNpgW/id-PJc-OROpd-1783799920563.png", 
-      color: "#FF7A59", 
-      bgColor: "rgba(255, 122, 89, 0.05)", 
-      borderColor: "rgba(255, 122, 89, 0.25)" 
+    {
+      name: "HubSpot",
+      logo: "https://i.ibb.co.com/NdzjNpgW/id-PJc-OROpd-1783799920563.png",
+      color: "#FF7A59",
+      bgColor: "rgba(255, 122, 89, 0.05)",
+      borderColor: "rgba(255, 122, 89, 0.25)"
     },
-    { 
-      name: "Salesforce", 
-      logo: "https://i.ibb.co.com/spC54Y4w/id-N3-Odc-TG-1783799948032.png", 
-      color: "#00A1E0", 
-      bgColor: "rgba(0, 161, 224, 0.05)", 
-      borderColor: "rgba(0, 161, 224, 0.25)" 
+    {
+      name: "Salesforce",
+      logo: "https://i.ibb.co.com/spC54Y4w/id-N3-Odc-TG-1783799948032.png",
+      color: "#00A1E0",
+      bgColor: "rgba(0, 161, 224, 0.05)",
+      borderColor: "rgba(0, 161, 224, 0.25)"
     },
-    { 
-      name: "Follow Up Boss", 
-      logo: "https://i.ibb.co.com/cXY9y5tT/FUB-Vertical-Main-RGB.png", 
-      color: "#10B981", 
-      bgColor: "rgba(16, 185, 129, 0.05)", 
-      borderColor: "rgba(16, 185, 129, 0.25)" 
+    {
+      name: "Follow Up Boss",
+      logo: "https://i.ibb.co.com/cXY9y5tT/FUB-Vertical-Main-RGB.png",
+      color: "#10B981",
+      bgColor: "rgba(16, 185, 129, 0.05)",
+      borderColor: "rgba(16, 185, 129, 0.25)"
     },
-    { 
-      name: "kvCORE", 
-      logo: "https://i.ibb.co.com/359LGQtt/id57qu8lh2-logos.png", 
-      color: "#4A90E2", 
-      bgColor: "rgba(74, 144, 226, 0.05)", 
-      borderColor: "rgba(74, 144, 226, 0.25)" 
+    {
+      name: "kvCORE",
+      logo: "https://i.ibb.co.com/359LGQtt/id57qu8lh2-logos.png",
+      color: "#4A90E2",
+      bgColor: "rgba(74, 144, 226, 0.05)",
+      borderColor: "rgba(74, 144, 226, 0.25)"
     },
-    { 
-      name: "Zoho CRM", 
-      logo: "https://i.ibb.co.com/JjB1BGMt/idso-XKv58-A-logos.png", 
-      color: "#E2231A", 
-      bgColor: "rgba(226, 35, 26, 0.05)", 
-      borderColor: "rgba(226, 35, 26, 0.25)" 
+    {
+      name: "Zoho CRM",
+      logo: "https://i.ibb.co.com/JjB1BGMt/idso-XKv58-A-logos.png",
+      color: "#E2231A",
+      bgColor: "rgba(226, 35, 26, 0.05)",
+      borderColor: "rgba(226, 35, 26, 0.25)"
     },
-    { 
-      name: "Airtable", 
-      logo: "https://i.ibb.co.com/b5P1d2c1/images-1.png", 
-      color: "#18BFFF", 
-      bgColor: "rgba(24, 191, 255, 0.05)", 
-      borderColor: "rgba(24, 191, 255, 0.25)" 
+    {
+      name: "Airtable",
+      logo: "https://i.ibb.co.com/b5P1d2c1/images-1.png",
+      color: "#18BFFF",
+      bgColor: "rgba(24, 191, 255, 0.05)",
+      borderColor: "rgba(24, 191, 255, 0.25)"
     },
-    { 
-      name: "LionDesk", 
-      logo: "https://i.ibb.co.com/4kYyMwD/images.png", 
-      color: "#F59E0B", 
-      bgColor: "rgba(245, 158, 11, 0.05)", 
-      borderColor: "rgba(245, 158, 11, 0.25)" 
+    {
+      name: "LionDesk",
+      logo: "https://i.ibb.co.com/4kYyMwD/images.png",
+      color: "#F59E0B",
+      bgColor: "rgba(245, 158, 11, 0.05)",
+      borderColor: "rgba(245, 158, 11, 0.25)"
     },
-    { 
-      name: "Alto CRM", 
-      logo: "https://i.ibb.co.com/RkYFppjp/f-Bws-Umlc-400x400.jpg", 
-      color: "#F8FAFC", 
-      bgColor: "rgba(248, 250, 252, 0.05)", 
-      borderColor: "rgba(248, 250, 252, 0.2)" 
+    {
+      name: "Alto CRM",
+      logo: "https://i.ibb.co.com/RkYFppjp/f-Bws-Umlc-400x400.jpg",
+      color: "#F8FAFC",
+      bgColor: "rgba(248, 250, 252, 0.05)",
+      borderColor: "rgba(248, 250, 252, 0.2)"
     },
-    { 
-      name: "ST CRM", 
-      logo: "https://i.ibb.co.com/GDPFmPC/image-removebg-preview.png", 
-      color: "#6366F1", 
-      bgColor: "rgba(99, 102, 241, 0.05)", 
-      borderColor: "rgba(99, 102, 241, 0.25)" 
+    {
+      name: "ST CRM",
+      logo: "https://i.ibb.co.com/GDPFmPC/image-removebg-preview.png",
+      color: "#6366F1",
+      bgColor: "rgba(99, 102, 241, 0.05)",
+      borderColor: "rgba(99, 102, 241, 0.25)"
     },
-    { 
-      name: "Apex CRM", 
-      logo: "https://i.ibb.co.com/TxpkRtQd/logo-social.png", 
-      color: "#3B82F6", 
-      bgColor: "rgba(59, 130, 246, 0.05)", 
-      borderColor: "rgba(59, 130, 246, 0.25)" 
+    {
+      name: "Apex CRM",
+      logo: "https://i.ibb.co.com/TxpkRtQd/logo-social.png",
+      color: "#3B82F6",
+      bgColor: "rgba(59, 130, 246, 0.05)",
+      borderColor: "rgba(59, 130, 246, 0.25)"
     }
   ];
 
@@ -220,7 +220,7 @@ function BentoCRMCarousel() {
   const currentCrm = crms[activeIndex];
 
   return (
-    <div 
+    <div
       className="relative w-full overflow-hidden flex flex-col justify-center items-center p-2 select-none mt-auto"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -233,7 +233,7 @@ function BentoCRMCarousel() {
             initial={{ opacity: 0, x: 70, scale: 0.9, rotateY: 20 }}
             animate={{ opacity: 1, x: 0, scale: 1, rotateY: 0 }}
             exit={{ opacity: 0, x: -70, scale: 0.9, rotateY: -20 }}
-            transition={{ 
+            transition={{
               type: "spring",
               stiffness: 130,
               damping: 16,
@@ -241,13 +241,13 @@ function BentoCRMCarousel() {
             }}
             className="flex flex-col items-center gap-4"
           >
-            <img 
-              src={currentCrm.logo} 
-              alt={`${currentCrm.name} logo`} 
+            <img
+              src={currentCrm.logo}
+              alt={`${currentCrm.name} logo`}
               className="h-10 sm:h-12 md:h-20 max-w-[120px] md:max-w-[200px] object-contain"
               referrerPolicy="no-referrer"
             />
-            
+
             <span className="text-white text-xs sm:text-sm md:text-2xl font-sans font-semibold tracking-normal text-center">
               {currentCrm.name}
             </span>
@@ -266,10 +266,10 @@ function PipelineVisualizer({ onOpenModal }: PipelineVisualizerProps) {
   return (
     <div className="w-full h-full relative z-10 flex flex-col items-center justify-center bg-transparent rounded-[2rem] overflow-hidden">
       <div className="w-full h-full min-h-[380px] md:min-h-[480px] relative overflow-hidden bg-transparent rounded-[2rem]">
-        <iframe 
-          src="https://my.spline.design/autolayoutlistcopycopy-2LAcqkfeGgalP69JSpflMFYG-0Sm/" 
-          frameBorder="0" 
-          width="100%" 
+        <iframe
+          src="https://my.spline.design/autolayoutlistcopycopy-2LAcqkfeGgalP69JSpflMFYG-0Sm/"
+          frameBorder="0"
+          width="100%"
           height="100%"
           className="absolute -top-[10px] -left-[10px] w-[calc(100%+80px)] h-[calc(100%+45px)] max-w-none max-h-none bg-transparent"
           style={{ border: "none" }}
@@ -293,7 +293,7 @@ export default function HomeView() {
     }, 2800);
     return () => clearInterval(interval);
   }, []);
-  
+
   // Contact form state
   const [formData, setFormData] = useState({
     name: "",
@@ -317,7 +317,7 @@ export default function HomeView() {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    
+
     if (name === "name" && value.trim()) {
       setFormErrors((prev) => ({ ...prev, name: false }));
     }
@@ -352,7 +352,7 @@ export default function HomeView() {
       e.preventDefault();
     }
   };
-  
+
   // Hero Chat sequence state
   const [heroMessages, setHeroMessages] = useState<ChatMessage[]>([]);
   const [heroTyping, setHeroTyping] = useState(false);
@@ -370,7 +370,7 @@ export default function HomeView() {
   // Auto-swipe effect for the carousel (ultra-smooth loop)
   useEffect(() => {
     if (isCarouselHovered) return;
-    
+
     const interval = setInterval(() => {
       handleCarouselNext();
     }, 4500); // Swipe every 4.5 seconds
@@ -417,83 +417,83 @@ export default function HomeView() {
   };
 
   const modules: Module[] = [
-    { 
-      id: 'lead-qualification', 
-      icon: <Filter className="w-7 h-7 text-white" />, 
+    {
+      id: 'lead-qualification',
+      icon: <Filter className="w-7 h-7 text-white" />,
       iconName: 'filter',
-      title: 'Lead Qualification', 
-      shortDesc: 'AI instantly identifies serious buyers from noise — so you only speak to people ready to move.', 
+      title: 'Lead Qualification',
+      shortDesc: 'AI instantly identifies serious buyers from noise — so you only speak to people ready to move.',
       specs: [
-        { label: 'Qualification Speed', value: 'Real-time' }, 
-        { label: 'Accuracy', value: 'Intent-based' }, 
+        { label: 'Qualification Speed', value: 'Real-time' },
+        { label: 'Accuracy', value: 'Intent-based' },
         { label: 'Manual Effort', value: 'Zero' }
-      ], 
-      longDesc: 'Every inquiry is analyzed against real-time market data and buyer psychology. ELVRT scores each lead before it ever reaches your phone — filtering out window shoppers and surfacing verified, high-intent buyers automatically.' 
+      ],
+      longDesc: 'Every inquiry is analyzed against real-time market data and buyer psychology. ELVRT scores each lead before it ever reaches your phone — filtering out window shoppers and surfacing verified, high-intent buyers automatically.'
     },
-    { 
-      id: 'automated-followup', 
-      icon: <RefreshCw className="w-7 h-7 text-white" />, 
+    {
+      id: 'automated-followup',
+      icon: <RefreshCw className="w-7 h-7 text-white" />,
       iconName: 'refresh-cw',
-      title: 'Automated Follow-up', 
-      shortDesc: "Cold leads don't die here. ELVRT keeps the conversation alive over days and weeks — automatically.", 
+      title: 'Automated Follow-up',
+      shortDesc: "Cold leads don't die here. ELVRT keeps the conversation alive over days and weeks — automatically.",
       specs: [
-        { label: 'Follow-up Duration', value: 'Long-term' }, 
-        { label: 'Personalization', value: 'AI-driven' }, 
+        { label: 'Follow-up Duration', value: 'Long-term' },
+        { label: 'Personalization', value: 'AI-driven' },
         { label: 'Manual Entry', value: 'Zero' }
-      ], 
-      longDesc: "Most deals are lost in the silence between contacts. ELVRT automatically checks in with your leads over days and weeks — sending personalized messages that build trust and keep your name top of mind until they're ready to move." 
+      ],
+      longDesc: "Most deals are lost in the silence between contacts. ELVRT automatically checks in with your leads over days and weeks — sending personalized messages that build trust and keep your name top of mind until they're ready to move."
     },
-    { 
-      id: 'crm-automation', 
-      icon: <Database className="w-7 h-7 text-white" />, 
+    {
+      id: 'crm-automation',
+      icon: <Database className="w-7 h-7 text-white" />,
       iconName: 'database',
-      title: 'CRM Automation', 
-      shortDesc: 'Every lead, every conversation, every status update — synced to your CRM instantly. No manual entry.', 
+      title: 'CRM Automation',
+      shortDesc: 'Every lead, every conversation, every status update — synced to your CRM instantly. No manual entry.',
       specs: [
-        { label: 'Manual Entry', value: 'Zero' }, 
-        { label: 'Scoring', value: 'Auto-Lead' }, 
+        { label: 'Manual Entry', value: 'Zero' },
+        { label: 'Scoring', value: 'Auto-Lead' },
         { label: 'Sync', value: 'Real-time' }
-      ], 
-      longDesc: 'ELVRT bridges your lead sources directly to your existing CRM — Follow Up Boss, LionDesk, HubSpot, and more. Every conversation is logged, every lead is tagged and scored, so your pipeline stays clean and actionable at all times.' 
+      ],
+      longDesc: 'ELVRT bridges your lead sources directly to your existing CRM — Follow Up Boss, LionDesk, HubSpot, and more. Every conversation is logged, every lead is tagged and scored, so your pipeline stays clean and actionable at all times.'
     },
-    { 
-      id: 'customer-support', 
-      icon: <MessageCircle className="w-7 h-7 text-white" />, 
+    {
+      id: 'customer-support',
+      icon: <MessageCircle className="w-7 h-7 text-white" />,
       iconName: 'message-circle',
-      title: '24/7 Customer Support', 
-      shortDesc: 'Every question answered, every inquiry handled — instantly, around the clock, without you lifting a finger.', 
+      title: '24/7 Customer Support',
+      shortDesc: 'Every question answered, every inquiry handled — instantly, around the clock, without you lifting a finger.',
       specs: [
-        { label: 'Response Time', value: '<10 seconds' }, 
-        { label: 'Availability', value: '24/7' }, 
+        { label: 'Response Time', value: '<10 seconds' },
+        { label: 'Availability', value: '24/7' },
         { label: 'Human Handoff', value: 'Seamless' }
-      ], 
-      longDesc: 'ELVRT acts as your always-on digital concierge. Whether a buyer messages at 2 PM or 2 AM — they get an instant, intelligent response. Common questions, property details, scheduling requests — all handled before you even see the notification.' 
+      ],
+      longDesc: 'ELVRT acts as your always-on digital concierge. Whether a buyer messages at 2 PM or 2 AM — they get an instant, intelligent response. Common questions, property details, scheduling requests — all handled before you even see the notification.'
     },
-    { 
-      id: 'property-showcasing', 
-      icon: <Home className="w-7 h-7 text-white" />, 
+    {
+      id: 'property-showcasing',
+      icon: <Home className="w-7 h-7 text-white" />,
       iconName: 'home',
-      title: 'Property Showcasing', 
-      shortDesc: 'High-res assets, property details, and availability — delivered to buyers instantly on demand.', 
+      title: 'Property Showcasing',
+      shortDesc: 'High-res assets, property details, and availability — delivered to buyers instantly on demand.',
       specs: [
-        { label: 'Asset Delivery', value: 'Instant' }, 
-        { label: 'Availability', value: 'Real-time' }, 
+        { label: 'Asset Delivery', value: 'Instant' },
+        { label: 'Availability', value: 'Real-time' },
         { label: 'Manual Effort', value: 'Zero' }
-      ], 
-      longDesc: 'ELVRT delivers your property portfolio directly inside the conversation. Buyers get high-resolution photos, floor plans, pricing, and availability — without waiting for you to manually send anything. Your listings work for you 24/7.' 
+      ],
+      longDesc: 'ELVRT delivers your property portfolio directly inside the conversation. Buyers get high-resolution photos, floor plans, pricing, and availability — without waiting for you to manually send anything. Your listings work for you 24/7.'
     },
-    { 
-      id: 'instant-engagement', 
-      icon: <Zap className="w-7 h-7 text-white" />, 
+    {
+      id: 'instant-engagement',
+      icon: <Zap className="w-7 h-7 text-white" />,
       iconName: 'zap',
-      title: 'Instant Engagement', 
-      shortDesc: 'The first response wins the deal. ELVRT engages every new inquiry within seconds — day or night.', 
+      title: 'Instant Engagement',
+      shortDesc: 'The first response wins the deal. ELVRT engages every new inquiry within seconds — day or night.',
       specs: [
-        { label: 'Response Time', value: '<10 seconds' }, 
-        { label: 'Uptime', value: '24/7' }, 
+        { label: 'Response Time', value: '<10 seconds' },
+        { label: 'Uptime', value: '24/7' },
         { label: 'Coverage', value: 'All Channels' }
-      ], 
-      longDesc: 'Speed-to-lead is everything in real estate. Studies show the first agent to respond wins 78% of the time. ELVRT intercepts every new inquiry across all your channels and responds within seconds — so you never lose a deal to slow response again.' 
+      ],
+      longDesc: 'Speed-to-lead is everything in real estate. Studies show the first agent to respond wins 78% of the time. ELVRT intercepts every new inquiry across all your channels and responds within seconds — so you never lose a deal to slow response again.'
     }
   ];
 
@@ -521,24 +521,24 @@ export default function HomeView() {
   // Hero Chat Loop
   useEffect(() => {
     let active = true;
-    
+
     const playHeroSequence = async () => {
       if (heroChatIntervalRef.current) clearTimeout(heroChatIntervalRef.current);
       if (!active) return;
-      
+
       setHeroMessages([]);
-      
+
       for (let i = 0; i < heroSequence.length; i++) {
         if (!active) return;
         const msg = heroSequence[i];
-        
+
         // delay before message starts typing/appearing
         await new Promise((resolve) => {
           heroChatIntervalRef.current = setTimeout(resolve, i === 0 ? 1000 : 2000);
         });
-        
+
         if (!active) return;
-        
+
         if (msg.role === 'received') {
           setHeroTyping(true);
           await new Promise((resolve) => {
@@ -547,10 +547,10 @@ export default function HomeView() {
           if (!active) return;
           setHeroTyping(false);
         }
-        
+
         setHeroMessages((prev) => [...prev, msg]);
       }
-      
+
       // Delay before restarting the loop
       await new Promise((resolve) => {
         heroChatIntervalRef.current = setTimeout(resolve, 6000);
@@ -596,20 +596,20 @@ export default function HomeView() {
           color: white;
           zoom: 0.85;
         }
-        
-        .navbar { 
-          position: fixed; top: 0; left: 0; right: 0; z-index: 50; 
-          padding: 0.75rem 2rem; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); 
-          background: transparent !important; backdrop-filter: none !important; 
-          border-bottom: none !important; 
+
+        .navbar {
+          position: fixed; top: 0; left: 0; right: 0; z-index: 50;
+          padding: 0.75rem 2rem; transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+          background: transparent !important; backdrop-filter: none !important;
+          border-bottom: none !important;
         }
-        .navbar.scrolled { 
-          padding: 0.5rem 2rem; background: rgba(0,0,0,0.88) !important; 
-          backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.06); 
+        .navbar.scrolled {
+          padding: 0.5rem 2rem; background: rgba(0,0,0,0.88) !important;
+          backdrop-filter: blur(24px); border-bottom: 1px solid rgba(255,255,255,0.06);
         }
-        .logo-container { 
-          width: 80px; height: 80px; display: flex; align-items: center; justify-content: center; 
-          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); transition: all 0.4s ease; 
+        .logo-container {
+          width: 80px; height: 80px; display: flex; align-items: center; justify-content: center;
+          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); transition: all 0.4s ease;
         }
         .logo-container:hover { transform: scale(1.08); }
         .logo-container img { width: 60px; height: 60px; object-fit: contain; filter: brightness(1.4) contrast(1.3); }
@@ -623,32 +623,32 @@ export default function HomeView() {
         .hero-cyan-tint { position: absolute; inset: 0; background: radial-gradient(ellipse at 30% 40%, rgba(34,211,238,0.025), transparent 60%); mix-blend-mode: screen; pointer-events: none; animation: tintPulse 12s ease-in-out infinite alternate; }
         @keyframes tintPulse { 0% { opacity: 0.5; } 100% { opacity: 0.9; } }
 
-        .btn-primary { 
-          display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.1rem 2.2rem; 
-          background: white; color: black; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800; 
-          font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; border: none; 
-          border-radius: 14px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); 
-          box-shadow: 0 8px 32px rgba(255,255,255,0.25); text-decoration: none; line-height: 1; 
+        .btn-primary {
+          display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.1rem 2.2rem;
+          background: white; color: black; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 800;
+          font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; border: none;
+          border-radius: 14px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+          box-shadow: 0 8px 32px rgba(255,255,255,0.25); text-decoration: none; line-height: 1;
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 16px 48px rgba(255,255,255,0.35); color: black; }
         .btn-primary:active { transform: translateY(1px); }
 
-        .btn-secondary { 
-          display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.1rem 2.2rem; 
-          background: transparent; color: white; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700; 
-          font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.35); 
-          border-radius: 14px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); text-decoration: none; 
+        .btn-secondary {
+          display: inline-flex; align-items: center; gap: 0.75rem; padding: 1.1rem 2.2rem;
+          background: transparent; color: white; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; font-weight: 700;
+          font-size: 0.875rem; letter-spacing: 0.1em; text-transform: uppercase; border: 2px solid rgba(255,255,255,0.35);
+          border-radius: 14px; cursor: pointer; transition: all 0.4s cubic-bezier(0.16,1,0.3,1); text-decoration: none;
         }
         .btn-secondary:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.55); transform: translateY(-3px); color: white; }
 
         /* ===== FEATURES SECTION ===== */
         .features-section { position: relative; background-image: url('https://i.ibb.co.com/RTvB6jmv/black-texture-background-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; }
         .features-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.45); z-index: 1; pointer-events: none; }
-        .feature-card { 
-          position: relative; background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #080808 100%); 
-          border-radius: 2.5rem; padding: 3rem 2.5rem; cursor: pointer; overflow: hidden; 
-          transition: all 0.5s cubic-bezier(0.16,1,0.3,1); border: 1px solid rgba(255,255,255,0.08); 
-          min-height: 380px; display: flex; flex-direction: column; 
+        .feature-card {
+          position: relative; background: linear-gradient(145deg, #1a1a1a 0%, #0d0d0d 50%, #080808 100%);
+          border-radius: 2.5rem; padding: 3rem 2.5rem; cursor: pointer; overflow: hidden;
+          transition: all 0.5s cubic-bezier(0.16,1,0.3,1); border: 1px solid rgba(255,255,255,0.08);
+          min-height: 380px; display: flex; flex-direction: column;
         }
         .feature-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 55%; background: linear-gradient(to top, rgba(251,146,60,0.25) 0%, rgba(249,115,22,0.15) 30%, rgba(234,88,12,0.08) 60%, transparent 100%); pointer-events: none; transition: all 0.5s cubic-bezier(0.16,1,0.3,1); opacity: 0.7; }
         .feature-card::after { content: ''; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(ellipse at 50% 0%, rgba(255,255,255,0.04) 0%, transparent 70%); pointer-events: none; transition: opacity 0.5s ease; }
@@ -698,7 +698,7 @@ export default function HomeView() {
         /* ===== HOW IT WORKS SECTION ===== */
         .how-section { position: relative; background-image: url('https://i.ibb.co.com/cSGykPyZ/black-texture-background-3.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; overflow: hidden; }
         .how-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.65); z-index: 1; pointer-events: none; }
-        
+
         .steps-row {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1087,19 +1087,19 @@ export default function HomeView() {
         /* ===== SHOWCASE CHAT SYSTEM ===== */
         .showcase-section { position: relative; padding: 6rem 1rem; background: url('https://i.ibb.co.com/cSGykPyZ/black-texture-background-3.jpg') center/cover fixed; overflow: hidden; }
         .showcase-section::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); z-index: 1; pointer-events: none; }
-        .showcase-content { 
-          position: relative; 
-          z-index: 10; 
-          max-width: 1200px; 
-          margin: 0 auto; 
-          transform: scale(1.05); 
-          transform-origin: center top; 
-          background: rgba(10, 10, 12, 0.45); 
-          backdrop-filter: blur(16px); 
-          -webkit-backdrop-filter: blur(16px); 
-          border: 1px solid rgba(255, 255, 255, 0.05); 
-          border-radius: 24px; 
-          padding: 4rem 3.5rem; 
+        .showcase-content {
+          position: relative;
+          z-index: 10;
+          max-width: 1200px;
+          margin: 0 auto;
+          transform: scale(1.05);
+          transform-origin: center top;
+          background: rgba(10, 10, 12, 0.45);
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+          border: 1px solid rgba(255, 255, 255, 0.05);
+          border-radius: 24px;
+          padding: 4rem 3.5rem;
           box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.8), 0 0 80px -10px rgba(255, 255, 255, 0.015);
         }
         .showcase-content::after {
@@ -1111,81 +1111,81 @@ export default function HomeView() {
           pointer-events: none;
           z-index: -1;
         }
-        
-        .tab-btn { 
-          padding: .6rem 1.3rem; 
-          border-radius: 9999px; 
-          font-size: 11px; 
-          font-weight: 700; 
-          letter-spacing: .08em; 
-          text-transform: uppercase; 
-          transition: all .3s cubic-bezier(0.16, 1, 0.3, 1); 
-          display: flex; 
-          align-items: center; 
-          gap: .6rem; 
-          cursor: pointer; 
-          border: 1px solid rgba(255, 255, 255, 0.08); 
-          background: transparent; 
-          color: rgba(255, 255, 255, 0.5); 
+
+        .tab-btn {
+          padding: .6rem 1.3rem;
+          border-radius: 9999px;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: .08em;
+          text-transform: uppercase;
+          transition: all .3s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          align-items: center;
+          gap: .6rem;
+          cursor: pointer;
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          background: transparent;
+          color: rgba(255, 255, 255, 0.5);
         }
-        .tab-btn:hover { 
-          color: rgba(255, 255, 255, 0.9); 
-          background: rgba(255, 255, 255, 0.03); 
-          border-color: rgba(255, 255, 255, 0.15); 
-          transform: translateY(-1px); 
+        .tab-btn:hover {
+          color: rgba(255, 255, 255, 0.9);
+          background: rgba(255, 255, 255, 0.03);
+          border-color: rgba(255, 255, 255, 0.15);
+          transform: translateY(-1px);
         }
-        .tab-btn.active-whatsapp { 
-          background: rgba(37, 211, 102, 0.15); 
-          border-color: #25D366; 
-          color: #25D366; 
+        .tab-btn.active-whatsapp {
+          background: rgba(37, 211, 102, 0.15);
+          border-color: #25D366;
+          color: #25D366;
           box-shadow: 0 0 15px rgba(37, 211, 102, 0.2);
           transform: translateY(-1px);
         }
-        .tab-btn.active-facebook { 
-          background: rgba(24, 119, 242, 0.15); 
-          border-color: #1877F2; 
-          color: #1877F2; 
+        .tab-btn.active-facebook {
+          background: rgba(24, 119, 242, 0.15);
+          border-color: #1877F2;
+          color: #1877F2;
           box-shadow: 0 0 15px rgba(24, 119, 242, 0.2);
           transform: translateY(-1px);
         }
-        .tab-btn.active-instagram { 
-          background: linear-gradient(45deg, rgba(240, 148, 51, 0.15), rgba(230, 92, 118, 0.15)); 
-          border-color: #E1306C; 
-          color: #fff; 
+        .tab-btn.active-instagram {
+          background: linear-gradient(45deg, rgba(240, 148, 51, 0.15), rgba(230, 92, 118, 0.15));
+          border-color: #E1306C;
+          color: #fff;
           box-shadow: 0 0 15px rgba(230, 92, 118, 0.2);
           transform: translateY(-1px);
         }
         .tab-btn img { width: 18px; height: 18px; object-fit: contain; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         .tab-btn:hover img { transform: scale(1.1); }
         .tab-panel.hidden { display: none; }
-        
-        .feature-row { 
-          display: flex; 
-          gap: 1.5rem; 
-          padding: 1.25rem; 
-          border-radius: 16px; 
-          background: rgba(255, 255, 255, 0.01); 
-          border: 1px solid rgba(255, 255, 255, 0.02); 
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+
+        .feature-row {
+          display: flex;
+          gap: 1.5rem;
+          padding: 1.25rem;
+          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.01);
+          border: 1px solid rgba(255, 255, 255, 0.02);
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .feature-row:hover { 
-          background: rgba(255, 255, 255, 0.03); 
-          border-color: rgba(255, 255, 255, 0.08); 
-          transform: translateY(-2px); 
+        .feature-row:hover {
+          background: rgba(255, 255, 255, 0.03);
+          border-color: rgba(255, 255, 255, 0.08);
+          transform: translateY(-2px);
         }
-        .feature-icon { 
-          width: 3.25rem; 
-          height: 3.25rem; 
-          border-radius: 50%; 
-          background: rgba(255, 255, 255, 0.02); 
-          border: 1px solid rgba(255, 255, 255, 0.08); 
-          display: flex; 
-          align-items: center; 
-          justify-content: center; 
-          flex-shrink: 0; 
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); 
+        .feature-icon {
+          width: 3.25rem;
+          height: 3.25rem;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.02);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        
+
         /* Subtle glow matching active platform theme color */
         .platform-whatsapp .feature-icon {
           border-color: rgba(37, 211, 102, 0.3);
@@ -1214,37 +1214,37 @@ export default function HomeView() {
           box-shadow: 0 0 15px rgba(225, 48, 108, 0.2);
           background: rgba(225, 48, 108, 0.05);
         }
-        
+
         .feature-title { font-size: 1.15rem; font-weight: 600; color: #fff; margin-bottom: .35rem; letter-spacing: -.01em; font-family: 'Space Grotesk', sans-serif; transition: transform .3s ease; }
         .feature-row:hover .feature-title { transform: translateX(4px); }
         .feature-desc { font-size: 0.925rem; line-height: 1.6; color: rgba(148, 163, 184, 0.85); font-weight: 300; max-width: 28rem; }
         .chat-clone-wrapper { display: flex; justify-content: center; width: 100%; }
-        
-        .wa-clone, .fb-clone, .ig-clone { 
-          display: flex; 
-          flex-direction: column; 
-          width: 100%; 
-          max-width: 480px; 
-          height: 600px; 
-          background: rgba(20, 20, 25, 0.5); 
-          backdrop-filter: blur(12px); 
-          -webkit-backdrop-filter: blur(12px); 
-          border: 1px solid rgba(255, 255, 255, 0.06); 
-          border-radius: 20px; 
-          position: relative; 
-          margin: 0 auto; 
-          overflow: hidden; 
-          font-family: 'Inter', system-ui, sans-serif; 
+
+        .wa-clone, .fb-clone, .ig-clone {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          max-width: 480px;
+          height: 600px;
+          background: rgba(20, 20, 25, 0.5);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.06);
+          border-radius: 20px;
+          position: relative;
+          margin: 0 auto;
+          overflow: hidden;
+          font-family: 'Inter', system-ui, sans-serif;
           box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
         }
-        
+
         .chat-header { background: rgba(15, 15, 20, 0.6); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; z-index: 10; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
         .header-left { display: flex; align-items: center; gap: 14px; }
         .avatar-wrap { position: relative; width: 44px; height: 44px; flex-shrink: 0; }
         .avatar { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; background: rgba(255, 255, 255, 0.08); display: flex; align-items: center; justify-content: center; border: 1.5px solid rgba(255, 255, 255, 0.1); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease; }
         .avatar:hover { transform: scale(1.08); border-color: rgba(255, 255, 255, 0.3); }
         .avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        
+
         @keyframes pulsing-dot {
           0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.6); }
           70% { box-shadow: 0 0 0 6px rgba(0, 230, 118, 0); }
@@ -1254,78 +1254,78 @@ export default function HomeView() {
         .contact-info h3 { color: #ffffff; font-size: 15px; font-weight: 600; margin-bottom: 2px; letter-spacing: -0.01em; }
         .contact-info p { color: #8696a1; font-size: 12px; font-weight: 400; }
         .header-right { display: flex; gap: 16px; align-items: center; }
-        
+
         .icon-btn, .footer-icon-btn { background: none; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; padding: 0; opacity: 0.8; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .icon-btn:hover { opacity: 1; transform: scale(1.08); }
         .footer-icon-btn:hover { opacity: 1; transform: scale(1.08); }
-        
+
         .chat-messages { flex: 1; overflow-y: auto; padding: 24px 20px; display: flex; flex-direction: column; gap: 12px; background: transparent; scroll-behavior: smooth; }
         .chat-messages::-webkit-scrollbar { display: none; }
         .chat-messages { -ms-overflow-style: none; scrollbar-width: none; }
-        
+
         .message-row { display: flex; width: 100%; }
         .message-row.sent { justify-content: flex-end; } .message-row.received { justify-content: flex-start; }
-        
+
         .bubble { max-width: 80%; padding: 12px 16px; position: relative; word-wrap: break-word; font-size: 14px; line-height: 1.5; box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.2s ease; }
         .bubble:hover { transform: translateY(-1px); }
-        
+
         .bubble.wa-rec, .bubble.fb-rec, .bubble.ig-rec {
-          background: rgba(255, 255, 255, 0.07); 
-          color: #F3F4F6; 
+          background: rgba(255, 255, 255, 0.07);
+          color: #F3F4F6;
           border-radius: 12px 12px 12px 4px;
           border: 1px solid rgba(255, 255, 255, 0.03);
         }
-        .bubble.wa-sent { 
-          background: linear-gradient(135deg, #128C7E 0%, #075E54 100%); 
-          color: #ffffff; 
-          border-radius: 12px 12px 4px 12px; 
-          box-shadow: 0 4px 12px rgba(18, 140, 126, 0.2); 
+        .bubble.wa-sent {
+          background: linear-gradient(135deg, #128C7E 0%, #075E54 100%);
+          color: #ffffff;
+          border-radius: 12px 12px 4px 12px;
+          box-shadow: 0 4px 12px rgba(18, 140, 126, 0.2);
           border: none;
         }
-        .bubble.fb-sent { 
-          background: linear-gradient(135deg, #0084ff 0%, #00c6ff 100%); 
-          color: #ffffff; 
-          border-radius: 12px 12px 4px 12px; 
-          box-shadow: 0 4px 12px rgba(0, 132, 255, 0.2); 
+        .bubble.fb-sent {
+          background: linear-gradient(135deg, #0084ff 0%, #00c6ff 100%);
+          color: #ffffff;
+          border-radius: 12px 12px 4px 12px;
+          box-shadow: 0 4px 12px rgba(0, 132, 255, 0.2);
           border: none;
         }
-        .bubble.ig-sent { 
-          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
-          color: #ffffff; 
-          border-radius: 12px 12px 4px 12px; 
-          box-shadow: 0 4px 14px rgba(220, 39, 67, 0.25); 
+        .bubble.ig-sent {
+          background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+          color: #ffffff;
+          border-radius: 12px 12px 4px 12px;
+          box-shadow: 0 4px 14px rgba(220, 39, 67, 0.25);
           border: none;
         }
-        
+
         .message-meta { display: flex; align-items: center; justify-content: flex-end; gap: 3px; margin-top: 4px; font-size: 10px; color: rgba(255,255,255,0.4); font-weight: 300; }
         .bubble-text { line-height: 1.5; }
-        
+
         .typing-bubble { background: rgba(255, 255, 255, 0.07); padding: 12px 18px; border-radius: 12px 12px 12px 4px; display: inline-flex; align-items: center; gap: 6px; border: 1px solid rgba(255, 255, 255, 0.03); }
         .dot { width: 6px; height: 6px; background: #8696a1; border-radius: 50%; display: inline-block; animation: wave 1.4s infinite ease-in-out; }
         .dot:nth-child(1) { animation-delay: -.32s; } .dot:nth-child(2) { animation-delay: -.16s; } .dot:nth-child(3) { animation-delay: 0s; }
         @keyframes wave { 0%, 80%, 100% { transform: scale(.8); opacity: .5; } 40% { transform: scale(1.2); opacity: 1; background: #e9edef; } }
-        
-        .chat-footer { 
-          background: rgba(15, 15, 20, 0.7); 
+
+        .chat-footer {
+          background: rgba(15, 15, 20, 0.7);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
-          padding: 16px 20px; 
-          display: flex; 
-          align-items: center; 
-          gap: 12px; 
-          flex-shrink: 0; 
-          border-top: 1px solid rgba(255, 255, 255, 0.06); 
+          padding: 16px 20px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          flex-shrink: 0;
+          border-top: 1px solid rgba(255, 255, 255, 0.06);
         }
-        
-        .input-wrap { 
-          flex: 1; 
-          display: flex; 
-          align-items: center; 
-          background: rgba(255, 255, 255, 0.04); 
+
+        .input-wrap {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          background: rgba(255, 255, 255, 0.04);
           border: 1px solid rgba(255, 255, 255, 0.08);
-          border-radius: 9999px; 
+          border-radius: 9999px;
           padding: 8px 16px;
-          transition: all 0.25s ease; 
+          transition: all 0.25s ease;
         }
         .input-wrap:focus-within {
           background: rgba(255, 255, 255, 0.07);
@@ -1334,14 +1334,14 @@ export default function HomeView() {
         }
         .input-wrap input { background: transparent; border: none; outline: none; color: #ffffff; font-size: 14px; width: 100%; font-family: inherit; padding: 2px 0; }
         .input-wrap input::placeholder { color: rgba(255, 255, 255, 0.4); }
-        
-        @media (max-width: 1024px) { 
+
+        @media (max-width: 1024px) {
           .showcase-content {
             transform: none !important;
             padding: 2.5rem 1.5rem;
             margin: 0 1rem;
           }
-          .showcase-grid { flex-direction: column; gap: 3rem; } 
+          .showcase-grid { flex-direction: column; gap: 3rem; }
         }
         @media (max-width: 768px) { .wa-clone,.fb-clone,.ig-clone { max-width: 100%; height: 560px; } }
 
@@ -1360,21 +1360,21 @@ export default function HomeView() {
         .hero-chat-container::-webkit-scrollbar {
           display: none;
         }
-        
+
         .hero-chat-row {
           display: flex;
           align-items: flex-end;
           width: 100%;
         }
-        
+
         .hero-chat-row.received {
           justify-content: flex-start;
         }
-        
+
         .hero-chat-row.sent {
           justify-content: flex-end;
         }
-        
+
         .hero-msg-bubble {
           max-width: 80%;
           padding: 14px 20px;
@@ -1385,14 +1385,14 @@ export default function HomeView() {
           box-shadow: 0 12px 30px -4px rgba(0, 0, 0, 0.3);
           transition: border-color 0.3s ease, background 0.3s ease;
         }
-        
+
         .hero-msg-received {
           background: #242730; /* Solid bold non-transparent dark charcoal */
           color: #ffffff;
           border-radius: 20px 20px 20px 6px;
           border: 1px solid #323744;
         }
-        
+
         .hero-msg-sent {
           background: #ffffff;
           color: #0f172a; /* High contrast dark text on white background */
@@ -1400,7 +1400,7 @@ export default function HomeView() {
           border: none;
           box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
         }
-        
+
         .hero-typing-bubble {
           background: #242730; /* Solid bold non-transparent dark charcoal to match */
           border: 1px solid #323744;
@@ -1429,10 +1429,10 @@ export default function HomeView() {
         }
 
         @keyframes bounce-dot-hero {
-          0%, 80%, 100% { 
+          0%, 80%, 100% {
             transform: scale(0.4);
             opacity: 0.4;
-          } 40% { 
+          } 40% {
             transform: scale(1.1);
             opacity: 1;
           }
@@ -1463,7 +1463,7 @@ export default function HomeView() {
             border-radius: 1.5rem;
           }
         }
-        
+
         .bento-big-card::before {
           content: '';
           position: absolute;
@@ -1543,14 +1543,14 @@ export default function HomeView() {
         }
 
         /* ===== CTA SECTION ===== */
-        .cta-section { 
-          position: relative; padding: 8rem 1.5rem; 
-          background-image: url('https://i.ibb.co/4wg8DgCB/Waveform-1-1366x628.jpg'); 
-          background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed; 
-          isolation: isolate; overflow: hidden; 
+        .cta-section {
+          position: relative; padding: 8rem 1.5rem;
+          background-image: url('https://i.ibb.co/4wg8DgCB/Waveform-1-1366x628.jpg');
+          background-size: cover; background-position: center; background-repeat: no-repeat; background-attachment: fixed;
+          isolation: isolate; overflow: hidden;
         }
         .cta-section::before { content: ''; position: absolute; inset: 0; background: rgba(9, 10, 15, 0.85); z-index: 1; pointer-events: none; }
-        
+
         .cta-contact-form {
           background: rgba(18, 19, 22, 0.45);
           backdrop-filter: blur(40px);
@@ -1620,13 +1620,13 @@ export default function HomeView() {
           font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
           box-shadow: 0 8px 24px rgba(255, 107, 43, 0.25);
         }
-        
+
         .cta-submit-btn:hover {
           background: #e55a1f;
           transform: translateY(-2px);
           box-shadow: 0 12px 32px rgba(255, 107, 43, 0.4);
         }
-        
+
         .cta-submit-btn:active {
           transform: translateY(0);
         }
@@ -1685,15 +1685,15 @@ export default function HomeView() {
       {/* ============================== */}
       <section id="solutions" className="relative pt-32 pb-32 md:pt-48 md:pb-48 min-h-screen flex items-center overflow-hidden">
         {/* Spline Particles Background Iframe */}
-        <div 
+        <div
           className="absolute left-[56%] md:left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[160vw] h-[160vw] md:w-[1690px] md:h-[1690px] max-w-[1950px] max-h-[1950px] z-0 overflow-hidden pointer-events-none select-none flex items-center justify-center"
-          style={{ 
+          style={{
             maskImage: 'radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 75%)',
             WebkitMaskImage: 'radial-gradient(circle, rgba(0,0,0,1) 45%, rgba(0,0,0,0) 75%)'
           }}
         >
-          <iframe 
-            src="https://my.spline.design/particlesforwebsite-hZ2i3HrGQQSdI7g0hW55mxl4/" 
+          <iframe
+            src="https://my.spline.design/particlesforwebsite-hZ2i3HrGQQSdI7g0hW55mxl4/"
             frameBorder="0"
             className="w-full h-full border-none pointer-events-none select-none opacity-100"
             title="Spline Particles Background"
@@ -1701,7 +1701,7 @@ export default function HomeView() {
         </div>
 
         <div className="w-full max-w-[1920px] mx-auto px-6 md:px-12 lg:px-20 grid lg:grid-cols-2 gap-16 lg:gap-24 lg:items-start relative z-10">
-          
+
           {/* Hero text */}
           <div className="relative z-20">
             <h1 className="hero-title mb-6 md:mb-10 text-left">
@@ -1716,16 +1716,16 @@ export default function HomeView() {
               Your leads, qualified. Your calendar, filled. Your deals, closed — on autopilot.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8 justify-start">
-              <a 
-                href="https://calendly.com/mspoltu07/strategy-call" 
-                target="_blank" 
-                rel="noopener noreferrer" 
+              <a
+                href="https://calendly.com/mspoltu07/strategy-call"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-primary w-full sm:w-auto justify-center"
               >
-                Book a Strategy Call 
+                Book a Strategy Call
                 <ArrowRight className="w-[18px] h-[18px] stroke-[2.5]" />
               </a>
-              <button 
+              <button
                 onClick={() => {
                   const el = document.getElementById("infinite-performance");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -1735,7 +1735,7 @@ export default function HomeView() {
                 View Services
               </button>
             </div>
-            
+
 
           </div>
 
@@ -1800,7 +1800,7 @@ export default function HomeView() {
       {/* ============================== */}
       <section id="infinite-performance" className="features-section relative py-32 md:py-40 px-6 overflow-hidden">
         <div className="features-content max-w-7xl mx-auto relative z-10">
-          
+
           <div className="mb-20 text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="h-[1px] w-8 bg-orange-400/50"></div>
@@ -1816,11 +1816,11 @@ export default function HomeView() {
 
           {/* Bento Grid layout replacing the simple 6-card feature list */}
           <div className="flex flex-col gap-8 text-left mt-12 w-full">
-            
+
             {/* 1. TOP WIDE ROW (Single Bento Big Card containing both Left and Right columns) */}
             <div className="bento-big-card w-full">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center w-full">
-                
+
                 {/* Left Column: Features */}
                 <div className="lg:col-span-7 flex flex-col justify-between h-full text-left">
                   <div>
@@ -1834,7 +1834,7 @@ export default function HomeView() {
 
                   <div className="space-y-8 mb-4">
                     {/* Feature 1: Lead Qualification */}
-                    <div 
+                    <div
                       className="flex flex-col gap-1 cursor-pointer group text-left"
                       onClick={() => setActiveModalIdx(0)}
                     >
@@ -1850,7 +1850,7 @@ export default function HomeView() {
                     </div>
 
                     {/* Feature 2: Automated Follow-up */}
-                    <div 
+                    <div
                       className="flex flex-col gap-1 cursor-pointer group text-left"
                       onClick={() => setActiveModalIdx(1)}
                     >
@@ -1879,9 +1879,9 @@ export default function HomeView() {
 
             {/* Row 2: Bottom Two Asymmetrical Cards (50%/50% Split) */}
             <div className="grid grid-cols-2 lg:grid-cols-2 gap-3 sm:gap-4 md:gap-8 w-full">
-              
+
               {/* 2. BOTTOM LEFT CARD (Seamless Ecosystem Integration) */}
-              <div 
+              <div
                 className="bento-small-card flex flex-col justify-between min-h-[280px] sm:min-h-[380px] md:min-h-[500px]"
                 onClick={() => setActiveModalIdx(2)}
               >
@@ -1892,11 +1892,11 @@ export default function HomeView() {
                   <h4 className="text-white text-xs sm:text-xl md:text-3xl font-display font-semibold mb-3 md:mb-6 tracking-tight">
                     Seamless Ecosystem Integration
                   </h4>
-                  
+
                   <div className="space-y-3 sm:space-y-4 md:space-y-6">
                     {/* Feature: CRM Automation */}
-                    <div 
-                      className="flex flex-col gap-0.5 cursor-pointer group text-left" 
+                    <div
+                      className="flex flex-col gap-0.5 cursor-pointer group text-left"
                       onClick={(e) => { e.stopPropagation(); setActiveModalIdx(2); }}
                     >
                       <div className="flex items-center gap-1.5 sm:gap-3">
@@ -1909,8 +1909,8 @@ export default function HomeView() {
                     </div>
 
                     {/* Feature: Property Showcasing */}
-                    <div 
-                      className="flex flex-col gap-0.5 cursor-pointer group text-left" 
+                    <div
+                      className="flex flex-col gap-0.5 cursor-pointer group text-left"
                       onClick={(e) => { e.stopPropagation(); setActiveModalIdx(4); }}
                     >
                       <div className="flex items-center gap-1.5 sm:gap-3">
@@ -1929,12 +1929,12 @@ export default function HomeView() {
               </div>
 
               {/* 3. BOTTOM RIGHT CARD (24/7 Instant Engagement) */}
-              <div 
+              <div
                 className="bento-small-card flex flex-col justify-between min-h-[280px] sm:min-h-[380px] md:min-h-[500px]"
                 onClick={() => setActiveModalIdx(3)}
               >
                 {/* Volumetric ambient backlighting glow */}
-                <div 
+                <div
                   className="absolute bottom-8 left-1/2 -translate-x-1/2 w-32 h-32 md:w-72 md:h-72 rounded-full pointer-events-none opacity-20"
                   style={{
                     background: "radial-gradient(circle, rgba(197, 168, 128, 0.22) 0%, rgba(22, 23, 25, 0.05) 70%, transparent 100%)",
@@ -1949,11 +1949,11 @@ export default function HomeView() {
                   <h4 className="text-white text-xs sm:text-xl md:text-3xl font-display font-semibold mb-3 md:mb-6 tracking-tight">
                     24/7 Instant Engagement
                   </h4>
-                  
+
                   <div className="space-y-3 sm:space-y-4 md:space-y-6">
                     {/* Feature: Instant Engagement */}
-                    <div 
-                      className="flex flex-col gap-0.5 cursor-pointer group text-left" 
+                    <div
+                      className="flex flex-col gap-0.5 cursor-pointer group text-left"
                       onClick={(e) => { e.stopPropagation(); setActiveModalIdx(5); }}
                     >
                       <div className="flex items-center gap-1.5 sm:gap-3">
@@ -1966,8 +1966,8 @@ export default function HomeView() {
                     </div>
 
                     {/* Feature: 24/7 Customer Support */}
-                    <div 
-                      className="flex flex-col gap-0.5 cursor-pointer group text-left" 
+                    <div
+                      className="flex flex-col gap-0.5 cursor-pointer group text-left"
                       onClick={(e) => { e.stopPropagation(); setActiveModalIdx(3); }}
                     >
                       <div className="flex items-center gap-1.5 sm:gap-3">
@@ -1996,9 +1996,9 @@ export default function HomeView() {
       <AnimatePresence>
         {activeModalIdx !== null && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 overflow-hidden">
-            
+
             {/* Backdrop */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -2007,7 +2007,7 @@ export default function HomeView() {
             />
 
             {/* Modal Card */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.92, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 30 }}
@@ -2018,7 +2018,7 @@ export default function HomeView() {
               <div className="absolute top-0 left-0 w-64 h-64 bg-[#C5A880]/5 rounded-full filter blur-[60px] pointer-events-none -translate-x-12 -translate-y-12" />
 
               {/* Close Button */}
-              <button 
+              <button
                 className="absolute top-6 right-6 p-2.5 rounded-full bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] hover:border-white/20 text-white/60 hover:text-white transition-all duration-300 hover:rotate-90 shadow-lg cursor-pointer z-20"
                 onClick={() => setActiveModalIdx(null)}
               >
@@ -2047,8 +2047,8 @@ export default function HomeView() {
                         {modules[activeModalIdx].longDesc}
                       </p>
                     </div>
-                    
-                    <motion.button 
+
+                    <motion.button
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                       onClick={() => alert(`Module "${modules[activeModalIdx].title}" initialized successfully in sandbox mode.`)}
@@ -2058,7 +2058,7 @@ export default function HomeView() {
                       <ArrowRight className="w-4 h-4 text-black stroke-[2.5]" />
                     </motion.button>
                   </div>
-                  
+
                   <div className="md:col-span-5 bg-white/[0.01] border border-white/[0.04] rounded-2xl p-6 space-y-1 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.02)]">
                     <h5 className="text-[9px] font-mono font-bold uppercase tracking-[0.3em] text-slate-500 pb-3 border-b border-white/[0.06] mb-1">
                       Technical Specifications
@@ -2086,7 +2086,7 @@ export default function HomeView() {
       {/* ============================== */}
       <section id="why-elvrt" className="why-section relative py-28 md:py-36 overflow-hidden">
         <div className="why-content relative z-10 max-w-7xl mx-auto px-6 md:px-12">
-          
+
           <div className="mb-20 text-center">
             <div className="flex items-center justify-center gap-3 mb-6">
               <div className="h-[1px] w-8 bg-orange-400/50"></div>
@@ -2101,7 +2101,7 @@ export default function HomeView() {
           </div>
 
           {/* Symmetrical Carousel Slider */}
-          <div 
+          <div
             className="carousel-wrapper"
             onMouseEnter={() => setIsCarouselHovered(true)}
             onMouseLeave={() => {
@@ -2109,34 +2109,34 @@ export default function HomeView() {
               handleMouseLeave();
             }}
           >
-            <div 
+            <div
               className="carousel-container relative w-full flex items-center justify-center"
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
               onMouseDown={handleMouseDown}
               onMouseUp={handleMouseUp}
             >
-              
+
               {/* Carousel card stage */}
               <div className="card-stage">
                 {whyElvrtItems.map((item, idx) => {
                   let cardClass = "far-next";
-                  
+
                   // Calculate relative index and wrap circularly
                   let diff = idx - carouselIdx;
                   if (diff < -3) diff += 6;
                   if (diff > 2) diff -= 6;
-                  
+
                   if (diff === 0) cardClass = "active";
                   else if (diff === -1) cardClass = "prev";
                   else if (diff === 1) cardClass = "next";
                   else if (diff === -2) cardClass = "far-prev";
                   else if (diff === 2) cardClass = "far-next";
                   else if (diff === -3) cardClass = "exit-left";
-                  
+
                   return (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className={`timeline-card ${cardClass}`}
                     >
                       <div className="card-content-inner">
@@ -2152,23 +2152,23 @@ export default function HomeView() {
               </div>
 
               {/* Slider Controls */}
-              <button 
+              <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleCarouselPrev();
                 }}
-                className="side-arrow arrow-left visible" 
+                className="side-arrow arrow-left visible"
                 aria-label="Previous Slide"
               >
                 <ChevronLeft className="w-7 h-7" style={{ strokeWidth: '2.4px' }} />
               </button>
-              
-              <button 
+
+              <button
                 onClick={(e) => {
                   e.stopPropagation();
                   handleCarouselNext();
                 }}
-                className="side-arrow arrow-right visible" 
+                className="side-arrow arrow-right visible"
                 aria-label="Next Slide"
               >
                 <ChevronRight className="w-7 h-7" style={{ strokeWidth: '2.4px' }} />
@@ -2197,7 +2197,7 @@ export default function HomeView() {
       {/* ============================== */}
       <section id="how-it-works" className="how-section relative py-32 md:py-44 overflow-hidden">
         <div className="how-content relative z-10 text-center">
-          
+
           <div className="mb-20 px-4">
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-display font-semibold text-white mb-6 leading-[1.05] tracking-[-0.03em]">
               How It Works
@@ -2223,7 +2223,7 @@ export default function HomeView() {
                 </p>
               </div>
             </div>
-            
+
             <div className="step-wrapper step-wrapper-2">
               <div className="step-item step-item-2 group text-center flex flex-col items-center">
                 <BuildSystemAnimation />
@@ -2234,7 +2234,7 @@ export default function HomeView() {
                 </p>
               </div>
             </div>
- 
+
             <div className="step-wrapper step-wrapper-3">
               <div className="step-item step-item-3 group text-center flex flex-col items-center">
                 <ScaleFasterAnimation />
@@ -2359,11 +2359,11 @@ export default function HomeView() {
           </div>
 
           {/* Promotional Alert Banner */}
-          <div 
-            style={{ 
-              border: '1.5px solid rgba(255, 255, 255, 0.1)', 
-              background: 'rgba(15, 15, 17, 0.7)', 
-              backdropFilter: 'blur(20px)' 
+          <div
+            style={{
+              border: '1.5px solid rgba(255, 255, 255, 0.1)',
+              background: 'rgba(15, 15, 17, 0.7)',
+              backdropFilter: 'blur(20px)'
             }}
             className="w-full max-w-6xl mx-auto mb-12 md:mb-16 rounded-[32px] p-8 md:p-12 lg:p-14 relative overflow-hidden group shadow-[0_32px_80px_rgba(0,0,0,0.65)] transition-all duration-500 hover:border-white/20 hover:translate-y-[-2px]"
           >
@@ -2372,7 +2372,7 @@ export default function HomeView() {
 
             {/* Top sharp line glow on the banner */}
             <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/15 to-transparent"></div>
-            
+
             {/* Elegant ambient corner glows */}
             <div className="absolute -right-24 -top-24 w-[350px] h-[350px] bg-gradient-to-br from-white/[0.03] to-transparent rounded-full blur-[90px] pointer-events-none group-hover:scale-110 transition-transform duration-1000 ease-out"></div>
             <div className="absolute -left-12 -bottom-12 w-[200px] h-[200px] bg-white/[0.01] rounded-full blur-[60px] pointer-events-none"></div>
@@ -2388,7 +2388,7 @@ export default function HomeView() {
                     Founding Partner Program
                   </h4>
                 </div>
-                
+
                 <p className="text-base md:text-lg text-neutral-300 font-medium leading-relaxed max-w-2xl">
                   We are selecting exactly <span className="text-white font-extrabold underline decoration-white/30">3 forward-thinking real estate agencies</span> to build our flagship launch case studies. If selected, we will heavily discount your setup fee <span className="text-white font-extrabold underline decoration-white/40">(save $1,001 instantly)</span> and lock in a <span className="text-white font-extrabold underline decoration-white/40">50% discount on your monthly retainer for life ($248/mo instead of $497/mo).</span> All we ask in return is a brief video testimonial once the system successfully starts booking and classifying your leads.
                 </p>
@@ -2403,7 +2403,7 @@ export default function HomeView() {
                   >
                     Apply Now
                   </a>
-                  
+
                   <span className="text-[#9CA3AF] font-bold text-xs md:text-sm">
                     Apply today to secure your spot.
                   </span>
@@ -2442,32 +2442,32 @@ export default function HomeView() {
 
           {/* Pricing Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl mx-auto items-stretch">
-            
+
             {/* Card 1: Speed-to-Lead */}
             <div className="flex flex-col bg-gradient-to-b from-white/[0.02] to-white/[0.005] backdrop-blur-xl border border-white/[0.05] rounded-[24px] p-8 md:p-9 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-white/[0.12] hover:translate-y-[-6px] hover:shadow-[0_32px_64px_rgba(0,0,0,0.8)] relative group">
               <div className="mb-6 text-left">
                 <h3 className="text-xl font-sans font-semibold text-white mb-3">Website Bot</h3>
                 <div className="flex items-baseline mb-1">
-                  <span className="text-[44px] font-sans font-bold text-white tracking-tight">$149149</span>
+                  <span className="text-[44px] font-sans font-bold text-white tracking-tight">$149</span>
                   <span className="text-[#8696a1] ml-2 text-sm font-light">/ month</span>
                 </div>
                 <div className="text-[13px] text-white/90 font-bold mb-6">
-                  + $299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299299 setup fee (Beta Price - Was $600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600600)
+                  + $299 setup fee (Beta Price - Was $600)
                 </div>
                 <p className="text-[14px] text-neutral-200 font-light min-h-[44px]">
-                  For agents whowho wantwant 24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AI on theirtheirtheirtheirtheirtheir website.
+                  For agents who want 24/7 AI on their website.
                 </p>
               </div>
 
               {/* Button */}
               <div className="mt-2 mb-8">
-                <a 
+                <a
                   href="https://calendly.com/mspoltu07/strategy-call"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center bg-white/[0.03] hover:bg-white/[0.07] text-white border border-white/[0.08] hover:border-white/[0.18] rounded-xl py-3.5 px-4 text-[13px] font-semibold transition-all duration-300 shadow-none"
                 >
-                  GetGet WebsiteBotWebsiteBot
+                  Get Website Bot
                 </a>
               </div>
 
@@ -2482,20 +2482,15 @@ export default function HomeView() {
               <ul className="space-y-4 flex-1 flex flex-col justify-start">
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
-                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
-                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
-                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
-                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
-                  <span className="text-sm text-neutral-300 font-light text-left">24/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/724/7 AIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAIAI WebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsiteWebsite Chat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat AgentChat Agent</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">24/7 AI Website Chat Agent</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">Lead Capture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM SyncCapture & CRM Sync</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">Lead Capture & CRM Sync</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Check className="w-4 h-4 text-[#8696a1] mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-neutral-300 font-light text-left">PropertyPropertyPropertyPropertyPropertyProperty ShowcasingShowcasingShowcasingShowcasingShowcasingShowcasing in Chatin Chatin Chatin Chatin Chatin Chat</span>
+                  <span className="text-sm text-neutral-300 font-light text-left">Property Showcasing in Chat</span>
                 </li>
               </ul>
             </div>
@@ -2505,7 +2500,7 @@ export default function HomeView() {
               {/* Sharp Specular Highlight Sweep line across top */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[90%] h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
               <div className="absolute -top-[20px] left-1/2 -translate-x-1/2 w-[180px] h-[40px] pointer-events-none z-20" style={{ background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0) 70%)' }}></div>
-              
+
               {/* Badge */}
               <div className="absolute top-5 right-5">
                 <span className="bg-white/[0.06] text-[#8696a1] border border-white/[0.1] text-[9px] font-semibold tracking-wider px-2.5 py-1 rounded-full">
@@ -2529,20 +2524,20 @@ export default function HomeView() {
 
               {/* Button */}
               <div className="mt-2 mb-8">
-                <a 
+                <a
                   href="https://calendly.com/mspoltu07/strategy-call"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#f25c38] to-[#ff734d] hover:brightness-110 text-white font-semibold rounded-xl py-3.5 px-4 text-[13px] transition-all duration-300 shadow-none border-0"
                 >
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+
+
+
+
+
+
+
+
                 </a>
               </div>
 
@@ -2587,7 +2582,7 @@ export default function HomeView() {
 
               {/* Button */}
               <div className="mt-2 mb-8">
-                <a 
+                <a
                   href="https://calendly.com/mspoltu07/strategy-call"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -2636,12 +2631,12 @@ export default function HomeView() {
           <p className="text-sm md:text-base lg:text-lg text-[#94A3B8] leading-relaxed mb-10 font-light max-w-2xl text-center">
             The agents who respond first, qualify smartest, and follow up longest — win. ELVRT makes you that agent, automatically.
           </p>
-          
+
           <div className="flex justify-center">
-            <a 
-              href="https://calendly.com/mspoltu07/strategy-call" 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href="https://calendly.com/mspoltu07/strategy-call"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center justify-center bg-white text-black hover:bg-slate-100 transition-all font-sans font-bold tracking-wider rounded-full shadow-[0_0_30px_rgba(255,255,255,0.25)] relative z-20"
               style={{
                 padding: '1.1rem 2.5rem',
@@ -2665,7 +2660,7 @@ function BookConsultationAnimation() {
     <div className="mb-6 flex items-center justify-center h-20 w-full relative bg-transparent select-none">
       {/* Soft ambient aura behind the step label */}
       <div className="absolute w-32 h-12 bg-white/[0.01] rounded-full blur-xl group-hover:bg-white/[0.03] transition-all duration-700 pointer-events-none"></div>
-      
+
       <div className="flex items-baseline gap-3 transition-all duration-500 ease-out group-hover:scale-[1.04]">
         <span className="text-3xl font-sans font-black text-neutral-500 uppercase tracking-tight transition-colors duration-500 group-hover:text-neutral-400">
           STEP
@@ -2683,7 +2678,7 @@ function BuildSystemAnimation() {
     <div className="mb-6 flex items-center justify-center h-20 w-full relative bg-transparent select-none">
       {/* Soft ambient aura behind the step label */}
       <div className="absolute w-32 h-12 bg-white/[0.01] rounded-full blur-xl group-hover:bg-white/[0.03] transition-all duration-700 pointer-events-none"></div>
-      
+
       <div className="flex items-baseline gap-3 transition-all duration-500 ease-out group-hover:scale-[1.04]">
         <span className="text-3xl font-sans font-black text-neutral-500 uppercase tracking-tight transition-colors duration-500 group-hover:text-neutral-400">
           STEP
@@ -2701,7 +2696,7 @@ function ScaleFasterAnimation() {
     <div className="mb-6 flex items-center justify-center h-20 w-full relative bg-transparent select-none">
       {/* Soft ambient aura behind the step label */}
       <div className="absolute w-32 h-12 bg-white/[0.01] rounded-full blur-xl group-hover:bg-white/[0.03] transition-all duration-700 pointer-events-none"></div>
-      
+
       <div className="flex items-baseline gap-3 transition-all duration-500 ease-out group-hover:scale-[1.04]">
         <span className="text-3xl font-sans font-black text-neutral-500 uppercase tracking-tight transition-colors duration-500 group-hover:text-neutral-400">
           STEP
